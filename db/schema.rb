@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_072558) do
+ActiveRecord::Schema.define(version: 2020_09_19_155925) do
 
   create_table "todos", force: :cascade do |t|
     t.string "name"
     t.string "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "line_id"
+    t.string "location"
+    t.string "tel"
+    t.boolean "privacy_flag"
+    t.boolean "location_flag"
+    t.integer "service_step"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
