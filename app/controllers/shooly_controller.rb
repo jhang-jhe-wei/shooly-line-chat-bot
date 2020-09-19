@@ -7,23 +7,9 @@ class ShoolyController < ApplicationController
     @name = "wells"
   end
 
-  def plumber
+  def service_content
     request.env["PATH_INFO"]
-    render "shooly/location1"
-  end
-
-  def wash
-    request.env["PATH_INFO"]
-    render "shooly/location1"
-  end
-
-  def home_wash
-    request.env["PATH_INFO"]
-    render "shooly/location1"
-  end
-
-  def other
-    request.env["PATH_INFO"]
+    puts params[:type]
     render "shooly/location1"
   end
 
