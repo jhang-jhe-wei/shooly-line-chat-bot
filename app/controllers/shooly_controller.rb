@@ -1,7 +1,7 @@
 class ShoolyController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :debug_info
-  # before_action :privacy_read?
+  before_action :privacy_read?
 
   def service_technician
     @name = "wells"
