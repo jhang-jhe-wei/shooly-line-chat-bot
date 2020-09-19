@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "天氣分析", to: "shooly#weather"
   get "(*date)(*location)天氣", to: "weather#show"
   get "(*location)天氣(*other)", to: "weather#show"
+  get "精選文章", to: "shooly#news"
   get "/0", to: "shooly#privacy"
   get "/1", to: "shooly#order_information"
   get "/2", to: "shooly#service_home_wash"
