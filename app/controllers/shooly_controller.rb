@@ -16,6 +16,8 @@ class ShoolyController < ApplicationController
   def privacy_read?
     @user = User.find_by line_id: params[:source_user_id]
     unless @user.privacy_flag
+      User.create(line_id: params[:source_user_id])
+      puts "privacy_read"
       render "shooly/privacy"
     end
   end
