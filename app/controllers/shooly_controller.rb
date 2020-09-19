@@ -10,12 +10,12 @@ class ShoolyController < ApplicationController
   def privacy_read?
     @user = User.find_by line_id: params[:source_user_id]
     if @user.nil?
-      render privacy
+      render "shooly/privacy"
       return false
     elsif @user.privacy_flag
       return true
     end
-    render privacy
+    render "shooly/privacy"
     return false
   end
 
