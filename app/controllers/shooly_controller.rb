@@ -8,9 +8,27 @@ class ShoolyController < ApplicationController
   end
 
   def service_content
-    request.env["PATH_INFO"]
-    puts params[:type]
+    @user.content = params[:type]
+    @user.save
     render "shooly/location1"
+  end
+
+  def location1
+    @user.location1 = params[:location1]
+    @user.save
+    render "shooly/location2"
+  end
+
+  def location2
+    @user.location2 = params[:location2]
+    @user.save
+    render "shooly/location"
+  end
+
+  def location
+    @user.location = request.env["PATH_INFO"]
+    @user.save
+    render "shooly/service_technician"
   end
 
   def accept
