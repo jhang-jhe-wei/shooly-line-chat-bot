@@ -1,68 +1,19 @@
 <%= raw ({
      "messages": [
        {
-         "type": "carousel",
-         "contents": [
-           {
-             "type": "bubble",
-             "body": {
-               "type": "box",
-               "layout": "horizontal",
-               "contents": [
-                 {
-                   "type": "text",
-                   "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                   "wrap": true,
-                 },
-               ],
-             },
-             "footer": {
-               "type": "box",
-               "layout": "horizontal",
-               "contents": [
-                 {
-                   "type": "button",
-                   "style": "primary",
-                   "action": {
-                     "type": "uri",
-                     "label": "Go",
-                     "uri": "https://example.com",
-                   },
-                 },
-               ],
-             },
-           },
-           {
-             "type": "bubble",
-             "body": {
-               "type": "box",
-               "layout": "horizontal",
-               "contents": [
-                 {
-                   "type": "text",
-                   "text": "Hello, World!",
-                   "wrap": true,
-                 },
-               ],
-             },
-             "footer": {
-               "type": "box",
-               "layout": "horizontal",
-               "contents": [
-                 {
-                   "type": "button",
-                   "style": "primary",
-                   "action": {
-                     "type": "uri",
-                     "label": "Go",
-                     "uri": "https://example.com",
-                   },
-                 },
-               ],
-             },
-           },
-         ],
-       },
-     ],
-     "replyToken": "34ec9ea5d5e643e193490d905908298b",
-   }).to_json %>
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Hello,"
+      },
+      {
+        "type": "text",
+        "text": "World!"
+      }
+    ]
+  }
+}).to_json %>
