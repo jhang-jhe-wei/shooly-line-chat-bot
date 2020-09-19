@@ -1,21 +1,7 @@
-<%= raw ({
-     "type": "flex",
-     "altText": "FIFA Home",
-     "contents": {
-       "type": "bubble",
-       "body": {
-         "type": "box",
-         "layout": "horizontal",
-         "contents": [
-           {
-             "type": "text",
-             "text": "Hello,",
-           },
-           {
-             "type": "text",
-             "text": "World!",
-           },
-         ],
-       },
-     },
-   }).to_json %>
+
+
+  <%= raw ({
+            "type": "flex",
+            "altText": "FIFA Home",
+            "contents": { "type": "bubble", "direction": "ltr", "body": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "開始使用Shooly之前，請先同意本服務條款、隱私權條款和免責聲明喔！", "align": "center", "margin": "xl", "wrap": true, "contents": [] }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "separator" }, { "type": "button", "action": { "type": "uri", "label": "查看Shooly條款", "uri": "http://privacy.shooly.homiestudio.com.tw/" }, "color": "#FFFFFFFF", "style": "link" }, { "type": "button", "action": { "type": "message", "label": "我同意Shooly條款", "text": "我同意Shooly條款" }, "color": "#0578A5FF", "margin": "xxl", "height": "md", "style": "primary", "gravity": "center" }] } },
+          }).to_json %>
