@@ -1,13 +1,133 @@
-require_relative '../lib/kamiflex'
-
-json = Kamiflex.build(self) do
-  bubble do
-    body do
-      vertical_box @resources do |resource|
-        text "#{resource[:name]}"
-      end
-    end
-  end
-end
-
-puts json
+<%= raw ({
+     "type": "flex",
+     "altText": "this is a flex message",
+     "contents": {
+       "type": "bubble",
+       "body": {
+         "type": "box",
+         "layout": "vertical",
+         "contents": [
+           {
+             "type": "box",
+             "layout": "horizontal",
+             "contents": [
+               {
+                 "type": "text",
+                 "text": "🍔",
+                 "flex": 0,
+                 "action": {
+                   "type": "message",
+                   "label": "/",
+                   "text": "/",
+                 },
+               },
+               {
+                 "type": "text",
+                 "text": "Todos",
+               },
+               {
+                 "type": "text",
+                 "text": "🆕",
+                 "align": "end",
+                 "action": {
+                   "type": "uri",
+                   "label": "/todos/new",
+                   "uri": "/todos/new",
+                 },
+               },
+             ],
+           },
+           {
+             "type": "separator",
+             "margin": "md",
+             "color": "#000000",
+           },
+           {
+             "type": "box",
+             "layout": "vertical",
+             "contents": [
+               {
+                 "type": "box",
+                 "layout": "horizontal",
+                 "contents": [
+                   {
+                     "type": "text",
+                     "text": "ruby",
+                     "action": {
+                       "type": "message",
+                       "label": "/todos/1",
+                       "text": "/todos/1",
+                     },
+                   },
+                   {
+                     "type": "text",
+                     "text": "❌",
+                     "align": "end",
+                     "action": {
+                       "type": "message",
+                       "label": "DELETE /todos/1",
+                       "text": "DELETE /todos/1",
+                     },
+                   },
+                 ],
+                 "margin": "lg",
+               },
+               {
+                 "type": "box",
+                 "layout": "horizontal",
+                 "contents": [
+                   {
+                     "type": "text",
+                     "text": "rails",
+                     "action": {
+                       "type": "message",
+                       "label": "/todos/2",
+                       "text": "/todos/2",
+                     },
+                   },
+                   {
+                     "type": "text",
+                     "text": "❌",
+                     "align": "end",
+                     "action": {
+                       "type": "message",
+                       "label": "DELETE /todos/2",
+                       "text": "DELETE /todos/2",
+                     },
+                   },
+                 ],
+                 "margin": "lg",
+               },
+               {
+                 "type": "box",
+                 "layout": "horizontal",
+                 "contents": [
+                   {
+                     "type": "text",
+                     "text": "kamiflex",
+                     "action": {
+                       "type": "message",
+                       "label": "/todos/3",
+                       "text": "/todos/3",
+                     },
+                   },
+                   {
+                     "type": "text",
+                     "text": "❌",
+                     "align": "end",
+                     "action": {
+                       "type": "message",
+                       "label": "DELETE /todos/3",
+                       "text": "DELETE /todos/3",
+                     },
+                   },
+                 ],
+                 "margin": "lg",
+               },
+             ],
+             "margin": "lg",
+           },
+         ],
+       },
+     },
+   }).to_json %>

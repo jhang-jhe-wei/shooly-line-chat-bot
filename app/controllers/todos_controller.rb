@@ -9,8 +9,6 @@ class TodosController < ApplicationController
   end
 
   def test0
-    require "kamiflex"
-
     @todos = [
       {
         id: 1,
