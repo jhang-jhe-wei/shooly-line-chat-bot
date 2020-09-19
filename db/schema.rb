@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_190929) do
+ActiveRecord::Schema.define(version: 2020_09_19_192118) do
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id_id"
+    t.integer "user_id"
+    t.integer "technician_id"
     t.string "content"
     t.string "location"
-    t.integer "technician_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["technician_id_id"], name: "index_orders_on_technician_id_id"
-    t.index ["user_id_id"], name: "index_orders_on_user_id_id"
+    t.index ["technician_id"], name: "index_orders_on_technician_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "technicians", force: :cascade do |t|
