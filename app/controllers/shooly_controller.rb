@@ -7,6 +7,26 @@ class ShoolyController < ApplicationController
     @name = "wells"
   end
 
+  def plumber
+    request.env["PATH_INFO"]
+    render "shooly/location1"
+  end
+
+  def wash
+    request.env["PATH_INFO"]
+    render "shooly/location1"
+  end
+
+  def home_wash
+    request.env["PATH_INFO"]
+    render "shooly/location1"
+  end
+
+  def other
+    request.env["PATH_INFO"]
+    render "shooly/location1"
+  end
+
   def accept
     @user = User.find_by line_id: params[:source_user_id]
     @user.privacy_flag = true
