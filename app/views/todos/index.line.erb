@@ -1,19 +1,21 @@
 <%= raw ({
-     "messages": [
-       {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "horizontal",
-    "contents": [
-      {
-        "type": "text",
-        "text": "Hello,"
-      },
-      {
-        "type": "text",
-        "text": "World!"
-      }
-    ]
-  }
-}).to_json %>
+         "messages": [
+           {
+             "type": "flex",
+             "body": {
+               "type": "box",
+               "layout": "horizontal",
+               "contents": [
+                 {
+                   "type": "text",
+                   "text": "Hello,",
+                 },
+                 {
+                   "type": "text",
+                   "text": "World!",
+                 },
+               ],
+             },
+           },
+         ],
+       }).to_json %>
