@@ -7,6 +7,12 @@ class ShoolyController < ApplicationController
     @name = "wells"
   end
 
+  def accept
+    @user = User.find_by line_id: params[:source_user_id]
+    @user.privacy_flag = true
+    @user.save
+  end
+
   def privacy_read?
     @user = User.find_by line_id: params[:source_user_id]
     if @user.nil?
