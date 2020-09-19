@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   get "/8", to: "shooly#service_time"
   get "/9", to: "shooly#service_wash"
   get "/10", to: "shooly#technician_information"
-  get "/10", to: "shooly#service_technician"
+  get "/11", to: "shooly#service_technician"
 end
