@@ -35,9 +35,9 @@ class ShoolyController < ApplicationController
   end
 
   def location
-    @user.location = request.env["PATH_INFO"]
+    @user.location = params[:location] + "號"
     @user.save
-    puts request.env["PATH_INFO"]
+    puts params[:location] + "號"
     render "shooly/service_technician"
   end
 
