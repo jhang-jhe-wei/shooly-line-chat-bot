@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "地區 (*location1)", to: "shooly#location1"
   get "縣市 (*location2)", to: "shooly#location2"
   get "(*location)號", to: "shooly#location"
+  get "選擇技師 (*technician)", to: "shooly#technician"
   get "/0", to: "shooly#privacy"
   get "/1", to: "shooly#order_information"
   get "/2", to: "shooly#service_home_wash"

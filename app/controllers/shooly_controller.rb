@@ -31,6 +31,12 @@ class ShoolyController < ApplicationController
   def location2
     @user.location2 = params[:location2]
     @user.save
+    render "shooly/service_technician"
+  end
+
+  def technician
+    @user.technician = params[:technician]
+    @user.save
     render "shooly/service_location"
   end
 
@@ -38,7 +44,7 @@ class ShoolyController < ApplicationController
     @user.location = params[:location] + "號"
     @user.save
     puts params[:location] + "號"
-    render "shooly/service_technician"
+    render "shooly/service_time"
   end
 
   def accept
