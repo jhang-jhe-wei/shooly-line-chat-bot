@@ -8,7 +8,7 @@ class ShoolyController < ApplicationController
   end
 
   def other
-    puts paramsd
+    puts params
   end
 
   def service_content
