@@ -8,7 +8,11 @@ class ShoolyController < ApplicationController
   end
 
   def other
-    puts params
+    if params[:source_params][:datetime].present?
+      puts params[:source_params][:datetime]
+    else
+      puts params[:source_params]
+    end
   end
 
   def service_content
