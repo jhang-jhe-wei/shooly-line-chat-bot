@@ -1,5 +1,15 @@
 Kamigo::Events::BasicEvent.class_eval do
   attr_accessor :params
+
+  def platform_params
+    {
+      platform_type: platform_type,
+      source_type: source_type,
+      source_group_id: source_group_id,
+      source_user_id: source_user_id,
+      source_params: params,
+    }
+  end
 end
 Kamigo::EventParsers::LineEventParser.class_eval do
   def parse(event)
