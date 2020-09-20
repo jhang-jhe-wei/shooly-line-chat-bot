@@ -31,6 +31,12 @@ class ShoolyController < ApplicationController
   def location2
     @user.location2 = params[:location2]
     @user.save
+    render "shooly/location2"
+  end
+
+  def location3
+    @user.location3 = params[:location3]
+    @user.save
     render "shooly/service_technician"
   end
 
