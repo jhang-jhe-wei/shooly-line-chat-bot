@@ -8,10 +8,10 @@ class ShoolyController < ApplicationController
   end
 
   def other
-    if params[:source_params][:datetime].present?
-      puts params[:source_params][:datetime]
-    else
+    if params["source_params"]["datetime"].nil?
       puts params[:source_params]
+    else
+      puts params[:source_params][:datetime]
     end
   end
 
