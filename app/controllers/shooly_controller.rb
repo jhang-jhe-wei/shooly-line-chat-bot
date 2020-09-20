@@ -8,10 +8,12 @@ class ShoolyController < ApplicationController
   end
 
   def other
-    if params["source_params"]["datetime"].nil?
-      puts params[:source_params]
+    if params["source_params"]["datetime"].present?
+      @user.time = DateTime.parse(params[:source_params][:datetime])
+      @user.save
+      render "shooly/order_information"
     else
-      puts params[:source_params][:datetime]
+      puts params[:source_params]
     end
   end
 
