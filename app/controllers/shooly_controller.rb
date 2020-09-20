@@ -7,6 +7,10 @@ class ShoolyController < ApplicationController
     @name = "wells"
   end
 
+  def other
+    puts paramsd
+  end
+
   def service_content
     @user.content = params[:type]
     @user.save
