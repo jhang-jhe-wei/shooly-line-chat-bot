@@ -5,6 +5,11 @@ class ShoolyController < ApplicationController
   before_action :debug_info
   before_action :privacy_read?, except: [:accept]
 
+  def comment
+    @user.service_step = "1"
+    @user.save
+  end
+
   def service_technician
     @name = "wells"
   end
@@ -19,6 +24,11 @@ class ShoolyController < ApplicationController
       render "shooly/order_information"
     else
       puts params[:source_params]
+    end
+    if @user.service_step == "1"
+      @user.service_step = nil
+      @user.save
+      render "shooly/thanks.line.erb"
     end
   end
 
@@ -62,9 +72,15 @@ class ShoolyController < ApplicationController
   end
 
   def location
-    @user.location = params[:location] + "號" + params[:location1]
-    @user.save
-    puts params[:location] + "號" + params[:location1]
+    if params[:location1].present?
+      @user.location = params[:location] + "號" + params[:location1]
+      @user.save
+      puts params[:location] + "號" + params[:location1]
+    else
+      @user.location = params[:location] + "號"
+      @user.save
+      puts params[:location] + "號"
+    end
     render "shooly/service_time"
   end
 
