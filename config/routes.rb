@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "(*location)號", to: "shooly#location"
   get "選擇技師 (*technician)", to: "shooly#technician"
   get "平台簡介", to: "shooly#platform_introduction"
+  get "(*other)", to: "shooly#other"
   get "/0", to: "shooly#privacy"
   get "/1", to: "shooly#order_information"
   get "/2", to: "shooly#service_home_wash"
