@@ -1,3 +1,5 @@
+require "uri"
+
 class ShoolyController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :debug_info
@@ -5,6 +7,9 @@ class ShoolyController < ApplicationController
 
   def service_technician
     @name = "wells"
+  end
+
+  def order
   end
 
   def other
@@ -57,9 +62,9 @@ class ShoolyController < ApplicationController
   end
 
   def location
-    @user.location = params[:location] + "號"
+    @user.location = params[:location] + "號" + params[:location1]
     @user.save
-    puts params[:location] + "號"
+    puts params[:location] + "號" + params[:location1]
     render "shooly/service_time"
   end
 
