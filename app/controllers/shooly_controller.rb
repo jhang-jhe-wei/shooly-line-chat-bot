@@ -8,9 +8,7 @@ class ShoolyController < ApplicationController
   end
 
   def other
-    unless params[:source_params][:datetime].nil?
-      puts params[:source_params][:datetime]
-    end
+    puts params
   end
 
   def service_content
