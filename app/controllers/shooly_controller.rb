@@ -16,7 +16,16 @@ class ShoolyController < ApplicationController
   def location1
     @user.location1 = params[:location1]
     @user.save
-    render "shooly/location2"
+    case params[:location1]
+    when "北區"
+      render "shooly/location_north"
+    when "中區"
+      render "shooly/location_west"
+    when "南區"
+      render "shooly/location_south"
+    when "東區"
+      render "shooly/location_east"
+    end
   end
 
   def location2

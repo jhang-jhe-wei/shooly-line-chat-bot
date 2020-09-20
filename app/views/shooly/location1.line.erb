@@ -1,1 +1,5 @@
-<%= raw ({ "type": "text", "text": "北區/中區/南區?" }).to_json %>
+<%= raw ({
+            "type": "flex",
+            "altText": "FIFA Home",
+            "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "選擇地區", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "message", "label": "北區", "text": "地區 北區" } }, { "type": "button", "action": { "type": "message", "label": "中區", "text": "地區 中區" } }, { "type": "button", "action": { "type": "message", "label": "南區", "text": "地區 南區" } }, { "type": "button", "action": { "type": "message", "label": "東區", "text": "地區 東區" } }] } },
+          }).to_json %>
