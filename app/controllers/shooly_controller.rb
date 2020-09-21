@@ -6,8 +6,9 @@ class ShoolyController < ApplicationController
   before_action :privacy_read?, except: [:accept]
 
   def getweather
+    puts "in get wather controller"
     @date = DateTime.parse(params[:source_params][:datetime])
-    render "weather#show"
+    render "weather/show"
   end
 
   def techcian_information
@@ -60,7 +61,7 @@ class ShoolyController < ApplicationController
       @user.phone_flag = nil
       @user.phone = params[:other]
       @user.save
-      line.push_message(line_id, { "type": "text", "text": "Shooly 幫你找了目前可以為您服務的技師喔！" })
+      line.push_message(params[:source_user_id], { "type": "text", "text": "Shooly 幫你找了目前可以為您服務的技師喔！" })
       render "shooly/service_technician"
     end
   end
