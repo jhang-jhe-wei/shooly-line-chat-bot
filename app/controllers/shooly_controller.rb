@@ -56,8 +56,7 @@ class ShoolyController < ApplicationController
       @user.phone_flag = "1"
       @user.save
       render "shooly/phone"
-    end
-    if @user.phone_flag.present?
+    elsif @user.phone_flag.present?
       @user.phone_flag = nil
       @user.phone = params[:other]
       @user.save
