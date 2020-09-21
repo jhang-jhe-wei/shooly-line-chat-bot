@@ -97,6 +97,7 @@ class ShoolyController < ApplicationController
   end
 
   def privacy_read?
+    puts params[:format]
     @user = User.find_by line_id: params[:source_user_id]
     if @user.nil?
       User.create(line_id: params[:source_user_id])
@@ -114,6 +115,7 @@ class ShoolyController < ApplicationController
     puts "source_type: #{params[:source_type]}"
     puts "source_group_id: #{params[:source_group_id]}"
     puts "source_user_id: #{params[:source_user_id]}"
+    puts "params: #{params}"
     puts "=== kamigo debug info end ==="
     puts ""
   end
