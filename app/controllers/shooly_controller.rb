@@ -97,9 +97,6 @@ class ShoolyController < ApplicationController
   end
 
   def privacy_read?
-    if params["other"].nil?
-      return false
-    end
     @user = User.find_by line_id: params[:source_user_id]
     if @user.nil?
       User.create(line_id: params[:source_user_id])
