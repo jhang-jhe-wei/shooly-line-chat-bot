@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "鄉鎮 (*location3)", to: "shooly#location3"
   get "確認訂單", to: "shooly#order"
   get "服務態度(*comment)", to: "shooly#comment"
+  get "付款方式(*pay)", to: "shooly#pay"
   get "/0", to: "shooly#privacy"
   get "/1", to: "shooly#order_information"
   get "/2", to: "shooly#service_home_wash"

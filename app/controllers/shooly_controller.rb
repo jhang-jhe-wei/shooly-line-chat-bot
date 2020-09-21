@@ -5,6 +5,10 @@ class ShoolyController < ApplicationController
   before_action :debug_info
   before_action :privacy_read?, except: [:accept]
 
+  def pay
+    render "shooly/comment_technician"
+  end
+
   def comment
     @user.service_step = "1"
     @user.save
