@@ -15,7 +15,7 @@ class ShoolyController < ApplicationController
   end
 
   def order
-    line.reply_message(params[:reply_token],"type": "text", "text": "您預約的技師約在5分鐘後到達!" })
+    line.reply_message(params[:reply_token], { "type": "text", "text": "您預約的技師約在5分鐘後到達!" })
   end
 
   def other
