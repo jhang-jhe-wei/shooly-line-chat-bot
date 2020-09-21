@@ -1,5 +1,6 @@
 Kamigo::Events::BasicEvent.class_eval do
   attr_accessor :params
+  attr_accessor :reply_token
 
   def platform_params
     {
@@ -8,6 +9,7 @@ Kamigo::Events::BasicEvent.class_eval do
       source_group_id: source_group_id,
       source_user_id: source_user_id,
       source_params: params,
+      reply_token: reply_token,
     }
   end
 end
@@ -16,7 +18,7 @@ Kamigo::EventParsers::LineEventParser.class_eval do
     payload = JSON.parse(event.to_json, symbolize_names: true)[:src]
     line_event = Kamigo::Events::LineEvent.new
     line_event.payload = payload
-    line_event.reply_token = params["events"][0]["replyToken"]
+    line_event.reply_token = event[0]["replyToken"]
     line_event.source_type = payload.dig(:source, :type)
     line_event.source_group_id = payload.dig(:source, :groupId) || payload.dig(:source, :roomId) || payload.dig(:source, :userId)
     line_event.source_user_id = payload.dig(:source, :userId) || payload.dig(:source, :groupId) || payload.dig(:source, :roomId)
