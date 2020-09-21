@@ -4,6 +4,11 @@ class PushMessageToLineJob < ApplicationJob
   def perform(line_id)
     # Do something later
     line.push_message(line_id, { "type": "text", "text": "提醒您 您預約的技師將在五分鐘內抵達" })
+    line.push_message(line_id, {
+      "type": "flex",
+      "altText": "FIFA Home",
+      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "付款方式", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "message", "label": "現金交易", "text": "付款方式 現金交易" } }, { "type": "button", "action": { "type": "message", "label": "Line Pay", "text": "付款方式 Line Pay" } }] } },
+    })
   end
 
   def line
