@@ -15,12 +15,11 @@ class ShoolyController < ApplicationController
   end
 
   def order
-    puts params
-    line.reply_message(params[:reply_token], { "type": "text", "text": "您預約的技師約在5分鐘後到達!" })
-    line.reply_message(params[:reply_token], { "type": "text", "text": "訂單已建立！您預約的技師約在25分後到達!" })
+    line.push_message(params[:source_user_id], { "type": "text", "text": "訂單已建立！您預約的技師約在25分後到達!" })
   end
 
   def other
+    puts @user.service_step
     if params["source_params"]["datetime"].present?
       @user.time = DateTime.parse(params[:source_params][:datetime])
       @user.save
@@ -28,7 +27,7 @@ class ShoolyController < ApplicationController
     else
       puts params[:source_params]
     end
-    if @user.service_step == "1"
+    if @user.service_step.present?
       @user.service_step = nil
       @user.save
       render "shooly/thanks.line.erb"
