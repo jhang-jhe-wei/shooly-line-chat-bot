@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   get "/9", to: "shooly#service_wash"
   get "/10", to: "shooly#technician_information"
   get "/11", to: "shooly#service_technician"
+  get "/12", to: "shooly#pay"
   get "(*other)", to: "shooly#other"
 end
