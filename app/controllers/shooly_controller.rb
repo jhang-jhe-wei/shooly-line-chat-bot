@@ -3,7 +3,7 @@ require "uri"
 class ShoolyController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :debug_info
-  #before_action :privacy_read?, except: [:accept]
+  before_action :privacy_read?, except: [:accept]
 
   def pay
     render "shooly/comment_technician"
