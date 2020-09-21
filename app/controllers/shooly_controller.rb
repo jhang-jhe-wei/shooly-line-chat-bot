@@ -5,8 +5,21 @@ class ShoolyController < ApplicationController
   before_action :debug_info
   before_action :privacy_read?, except: [:accept]
 
-  def pay
+  def getweather
+    @date = DateTime.parse(params[:source_params][:datetime])
+    render "weather#show"
+  end
+
+  def techcian_information
+    @technician = params[:technician]
+  end
+
+  def finish_order
     render "shooly/comment_technician"
+  end
+
+  def pay
+    render "shooly/finish_order"
   end
 
   def comment
@@ -35,6 +48,20 @@ class ShoolyController < ApplicationController
       @user.service_step = nil
       @user.save
       render "shooly/thanks.line.erb"
+    end
+    if @user.name_flag.present?
+      @user.name_flag = nil
+      @user.name = params[:other]
+      @user.phone = "1"
+      @user.save
+      render "shooly/phone"
+    end
+    if @user.phone_flag.present?
+      @user.phone_flag = nil
+      @user.phone = params[:other]
+      @user.save
+      line.push_message(line_id, { "type": "text", "text": "Shooly 幫你找了目前可以為您服務的技師喔！" })
+      render "shooly/service_technician"
     end
   end
 
@@ -67,8 +94,9 @@ class ShoolyController < ApplicationController
 
   def location3
     @user.location3 = params[:location3]
+    @user.name_flag = "1"
     @user.save
-    render "shooly/service_technician"
+    render "shooly/name"
   end
 
   def technician

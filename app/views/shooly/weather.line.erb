@@ -1,1 +1,42 @@
-<%= raw ({ "type": "text", "text": "請輸入日期和地點(例如：9月7日台北天氣)，即可了解當日的天氣狀況，陰雨天不建議預約室外維修喔！（如室外冷氣機、水塔等）" }).to_json %>	
+
+<%= raw ({
+          "type": "flex",
+          "altText": "FIFA Home",
+          "contents": {
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "backgroundColor": "#0E86CCFF",
+              "contents": [
+                {
+                      "type": "text",
+                      "text": "天氣分析",
+                      "size": "xl",
+                      "color": "#FFFFFFFF",
+                      "align": "center",
+                      "contents": [],
+                    },
+              ],
+            },
+            "footer": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                      "type": "button",
+                      "action": {
+                        "type": "datetimepicker",
+                        "label": "選擇日期",
+                        "data": "取得天氣",
+                        "mode": "datetime",
+                        "initial": "2020-09-21T16:31",
+                        "max": "2021-09-30T16:31",
+                        "min": "2019-09-21T16:31",
+                      },
+                    },
+              ],
+            },
+          },
+        }).to_json %>

@@ -1,0 +1,36 @@
+<%= raw ({
+            "type": "flex",
+            "altText": "FIFA Home",
+            "contents": {
+              "type": "bubble",
+              "direction": "ltr",
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "麻煩您在交付現金給技師後，按下完成訂單。",
+                    "align": "start",
+                    "wrap": true,
+                    "contents": [],
+                  },
+                ],
+              },
+              "footer": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "message",
+                      "label": "完成訂單",
+                      "text": "完成訂單",
+                    },
+                  },
+                ],
+              },
+            },
+          }).to_json %>
+

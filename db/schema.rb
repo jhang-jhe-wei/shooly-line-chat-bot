@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_144658) do
+ActiveRecord::Schema.define(version: 2020_09_21_091036) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(version: 2020_09_20_144658) do
     t.string "content"
     t.datetime "time"
     t.string "technician"
+    t.string "name"
+    t.string "phone"
+    t.string "name_flag"
+    t.string "phone_flag"
   end
 
 end

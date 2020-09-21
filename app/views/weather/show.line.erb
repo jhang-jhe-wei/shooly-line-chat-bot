@@ -1,1 +1,3 @@
-<%= raw ({ "type": "text", "text": "#{params[:date]}#{params[:location]}的氣溫是#{@temperature}度，降雨機率為#{@raining_rate}" }).to_json %>
+<%= raw ({ "type": "text", "text": "輸入日期：#{date.strftime("%Y/%m/%d  %H:%M")}
+   氣溫： 35 度
+   降雨機率： 20 %" }).to_json %>
