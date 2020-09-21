@@ -15,7 +15,7 @@ class ShoolyController < ApplicationController
   end
 
   def order
-    PushMessageToLineJobline.set(wait: 1.minutes).perform_later(params[:source_user_id])
+    PushMessageToLineJob.set(wait: 1.minutes).perform_later(params[:source_user_id])
   end
 
   def other
