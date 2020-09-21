@@ -3,7 +3,7 @@ class PushMessageToLineJob < ApplicationJob
 
   def perform(line_id)
     # Do something later
-    push_message(line_id, { "type": "text", "text": "您預約的技師約在5分鐘後到達!" })
+    line.push_message(line_id, { "type": "text", "text": "您預約的技師約在5分鐘後到達!" })
   end
 
   def line
