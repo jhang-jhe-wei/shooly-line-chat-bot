@@ -15,7 +15,7 @@ class ShoolyController < ApplicationController
   end
 
   def order
-    line.push_message(params[:source_user_id], { "type": "text", "text": "訂單已建立！您預約的技師約在25分後到達!" })
+    PushMessageToLineJobline.set(wait: 1.minutes).perform_later(params[:source_user_id])
   end
 
   def other
