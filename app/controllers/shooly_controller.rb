@@ -21,6 +21,7 @@ class ShoolyController < ApplicationController
   end
 
   def finish_order
+    line.push_message(params[:source_user_id], { "type": "text", "text": "請問您給小虎幾顆星評價呢？\n您的評價將幫助其他用戶挑選技師喔！" })
     render "shooly/comment_technician"
   end
 
