@@ -1,1 +1,58 @@
-<%= raw ({ "type": "text", "text": "訂單已建立！您預約的技師約在6分後到達！" }).to_json %>
+
+<%= raw ({
+          "type": "flex",
+          "altText": "FIFA Home",
+          "contents": {
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "backgroundColor": "#0E86CCFF",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "訂單已建立",
+                  "size": "xl",
+                  "color": "#FFFFFFFF",
+                  "align": "center",
+                  "contents": [],
+                },
+              ],
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "您預約的技師將在6分鐘到達!",
+                  "align": "center",
+                  "contents": [],
+                },
+              ],
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "聯絡技師",
+                    "text": "聯絡技師",
+                  },
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "查看技師目前位置",
+                    "text": "查看技師目前位置",
+                  },
+                },
+              ],
+            },
+          },
+        }).to_json %>

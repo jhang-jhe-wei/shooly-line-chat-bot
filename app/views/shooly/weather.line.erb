@@ -11,13 +11,26 @@
               "backgroundColor": "#0E86CCFF",
               "contents": [
                 {
-                      "type": "text",
-                      "text": "天氣分析",
-                      "size": "xl",
-                      "color": "#FFFFFFFF",
-                      "align": "center",
-                      "contents": [],
-                    },
+                  "type": "text",
+                  "text": "天氣分析",
+                  "size": "xl",
+                  "color": "#FFFFFFFF",
+                  "align": "center",
+                  "contents": [],
+                },
+              ],
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "請選擇預約日期，即可了解當日的天氣況，陰雨天不建議預約試外維修喔  (如室外冷氣機、水塔等)!",
+                  "align": "start",
+                  "wrap": true,
+                  "contents": [],
+                },
               ],
             },
             "footer": {
@@ -25,17 +38,17 @@
               "layout": "horizontal",
               "contents": [
                 {
-                      "type": "button",
-                      "action": {
-                        "type": "datetimepicker",
-                        "label": "選擇日期",
-                        "data": "取得天氣",
-                        "mode": "datetime",
-                        "initial": "2020-09-21T16:31",
-                        "max": "2021-09-30T16:31",
-                        "min": "2019-09-21T16:31",
-                      },
-                    },
+                  "type": "button",
+                  "action": {
+                    "type": "datetimepicker",
+                    "label": "選擇日期",
+                    "data": "天氣分析",
+                    "mode": "datetime",
+                    "initial": "2020-09-21T16:31",
+                    "max": "2021-09-30T16:31",
+                    "min": "2019-09-21T16:31",
+                  },
+                },
               ],
             },
           },

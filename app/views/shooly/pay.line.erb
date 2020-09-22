@@ -1,38 +1,45 @@
 <%= raw ({
-            "type": "flex",
-            "altText": "FIFA Home",
-            "contents": {
-              "type": "bubble",
-              "direction": "ltr",
-              "header": {
-                "type": "box",
-                "layout": "vertical",
-                "backgroundColor": "#1969A4FF",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "選擇付款方式",
-                    "weight": "bold",
-                    "size": "xl",
-                    "color": "#FFFFFFFF",
-                    "align": "center",
-                    "contents": [],
-                  },
-                ],
-              },
-              "footer": {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "message",
-                      "label": "現金付款",
-                      "text": "付款方式 現金付款",
-                    },
-                  },
-                ],
-              },
-            },
-          }).to_json %>
+         "type": "flex",
+         "altText": "FIFA Home",
+         "contents": {
+           "type": "bubble",
+           "direction": "ltr",
+           "header": {
+             "type": "box",
+             "layout": "vertical",
+             "backgroundColor": "#0E86CCFF",
+             "contents": [
+               {
+                 "type": "text",
+                 "text": "付款方式",
+                 "size": "xl",
+                 "color": "#FFFFFFFF",
+                 "align": "center",
+                 "contents": [],
+               },
+             ],
+           },
+           "footer": {
+             "type": "box",
+             "layout": "vertical",
+             "contents": [
+               {
+                 "type": "button",
+                 "action": {
+                   "type": "message",
+                   "label": "現金付款",
+                   "text": "選擇付款 現金付款",
+                 },
+               },
+               {
+                 "type": "button",
+                 "action": {
+                   "type": "message",
+                   "label": "Line Pay",
+                   "text": "選擇付款 Line Pay",
+                 },
+               },
+             ],
+           },
+         },
+       }).to_json %>
