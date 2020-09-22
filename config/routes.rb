@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get "完成訂單", to: "shooly#finish_order"
   get "技師資訊 (*technician)", to: "shooly#techcian_information"
   get "聯絡技師 (*technician)", to: "shooly#contact"
-  get "結束諮詢", to: "shooly#end_contact"
+  get "[結束諮詢]", to: "shooly#end_contact"
   get "取消", to: "shooly#thanks"
   get "查看技師目前位置", to: "shooly#map"
   get "/0", to: "shooly#privacy"
