@@ -5,6 +5,11 @@ class ShoolyController < ApplicationController
   before_action :debug_info
   before_action :privacy_read?, except: [:accept]
 
+  def contact
+    @user.technician = params[:technician]
+    @user.save
+  end
+
   def getweather
     puts "in get wather controller"
     @date = DateTime.parse(params[:source_params][:datetime])

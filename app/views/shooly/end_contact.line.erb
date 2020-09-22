@@ -1,0 +1,45 @@
+<%= raw ({
+         "type": "flex",
+         "altText": "FIFA Home",
+         "contents": {
+           "type": "bubble",
+           "direction": "ltr",
+           "header": {
+             "type": "box",
+             "layout": "vertical",
+             "backgroundColor": "#0E86CCFF",
+             "contents": [
+               {
+                       "type": "text",
+                       "text": "確認預約#{@user.technician}嗎?",
+                       "size": "xl",
+                       "color": "#FFFFFFFF",
+                       "align": "center",
+                       "contents": [],
+                     },
+             ],
+           },
+           "footer": {
+             "type": "box",
+             "layout": "vertical",
+             "contents": [
+               {
+                       "type": "button",
+                       "action": {
+                         "type": "message",
+                         "label": "確定預約",
+                         "text": "選擇技師 #{@user.technician}",
+                       },
+                     },
+               {
+                       "type": "button",
+                       "action": {
+                         "type": "message",
+                         "label": "取消",
+                         "text": "取消",
+                       },
+                     },
+             ],
+           },
+         },
+       }).to_json %>
