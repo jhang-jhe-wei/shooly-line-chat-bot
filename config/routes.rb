@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get "付款方式(*pay)", to: "shooly#pay"
   get "取得天氣", to: "shooly#getweather"
   get "完成訂單", to: "shooly#finish_order"
-  get "技師資訊 (*technician)", to: "shooly#techcian_information"
+  get "技師資訊 (*technician)", to: "shooly#technician_information"
   get "聯絡技師 (*technician)", to: "shooly#contact"
   get "結束諮詢", to: "shooly#end_contact"
   get "取消", to: "shooly#thanks"

@@ -16,9 +16,8 @@ class ShoolyController < ApplicationController
     render "weather/show"
   end
 
-  def techcian_information
+  def technician_information
     @technician = params[:technician]
-    render "shooly/techcian_information"
   end
 
   def finish_order
