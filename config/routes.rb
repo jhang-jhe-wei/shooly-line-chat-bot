@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :todos
+  #resources :todos
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "todos#index"
   get "我同意Shooly條款", to: "shooly#accept"
@@ -46,5 +46,5 @@ Rails.application.routes.draw do
   get "/10", to: "shooly#technician_information"
   get "/11", to: "shooly#service_technician"
   get "/12", to: "shooly#pay"
-  #get "(*other)", to: "shooly#other"
+  get "(*other)", to: "shooly#other"
 end
