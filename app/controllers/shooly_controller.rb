@@ -18,6 +18,7 @@ class ShoolyController < ApplicationController
 
   def techcian_information
     @technician = params[:technician]
+    render "shooly/techcian_information"
   end
 
   def finish_order
