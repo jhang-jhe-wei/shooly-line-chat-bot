@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "todos#index"
   get "我同意Shooly條款", to: "shooly#accept"
+  get "follow", to: "shooly#platform_introduction"
   get "天氣分析", to: "shooly#weather"
   #get "(*date)(*location)天氣", to: "weather#show"
   #get "(*location)天氣(*other)", to: "weather#show"
