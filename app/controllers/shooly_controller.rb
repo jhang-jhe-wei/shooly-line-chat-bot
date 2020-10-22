@@ -95,7 +95,7 @@ class ShoolyController < ApplicationController
   def location2
     @user.location2 = params[:location2]
     @user.save
-  case params[:location2]
+    case params[:location2]
     when "新竹市" then render "shooly/Hsinchu_City"
     when "新北市" then render "shooly/location2"
     when "基隆市" then render "shooly/location2"
@@ -115,7 +115,7 @@ class ShoolyController < ApplicationController
     when "嘉義縣" then render "shooly/Chiayi_County"
     when "嘉義市" then render "shooly/location2"
     when "新竹縣" then render "shooly/location2"
-  end
+    end
   end
 
   def location3
