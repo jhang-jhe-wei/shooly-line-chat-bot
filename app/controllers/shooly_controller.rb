@@ -95,6 +95,27 @@ class ShoolyController < ApplicationController
   def location2
     @user.location2 = params[:location2]
     @user.save
+  case params[:location2]
+    when "新竹市" then render "shooly/Hsinchu_City"
+    when "新北市" then render "shooly/location2"
+    when "基隆市" then render "shooly/location2"
+    when "雲林縣" then render "shooly/location2"
+    when "高雄市" then render "shooly/location2"
+    when "桃園市" then render "shooly/location2"
+    when "苗栗縣" then render "shooly/location2"
+    when "屏東縣" then render "shooly/location2"
+    when "南投縣" then render "shooly/location2"
+    when "花蓮縣" then render "shooly/location2"
+    when "宜蘭縣" then render "shooly/location2"
+    when "台南市" then render "shooly/location2"
+    when "台東縣" then render "shooly/location2"
+    when "台北市" then render "shooly/location2"
+    when "台中市" then render "shooly/location2"
+    when "彰化縣" then render "shooly/location2"
+    when "嘉義縣" then render "shooly/Chiayi_County"
+    when "嘉義市" then render "shooly/location2"
+    when "新竹縣" then render "shooly/location2"
+  end
     render "shooly/location2"
   end
 
