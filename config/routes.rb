@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :todos
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "todos#index"
+  get "test",to: "todos#test0"
   get "我同意Shooly條款", to: "shooly#accept"
   get "follow", to: "shooly#platform_introduction"
   get "天氣分析", to: "shooly#weather"
