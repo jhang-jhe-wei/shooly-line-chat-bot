@@ -1,0 +1,37 @@
+<%= raw ({
+            "type": "flex",
+            "altText": "FIFA Home",
+            "contents": {
+              "type": "bubble",
+              "direction": "ltr",
+              "header": {
+                "type": "box",
+                "layout": "vertical",
+                "backgroundColor": "#1969A4FF",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "鄉鎮",
+                    "weight": "bold",
+                    "size": "xl",
+                    "color": "#FFFFFFFF",
+                    "align": "center",
+                    "contents": [],
+                  },
+                ],
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+      
+                  { "type": "button", "action": { "type": "message", "label": "東區", "text": "鄉鎮 東區" } },
+                  { "type": "button", "action": { "type": "message", "label": "西區", "text": "鄉鎮 西區" } },
+      
+                ],
+              },
+            },
+          }).to_json %>
+
+
+
