@@ -47,5 +47,8 @@ Rails.application.routes.draw do
   get "/10", to: "shooly#technician_information"
   get "/11", to: "shooly#service_technician"
   get "/12", to: "shooly#pay"
-  #get "(*other)", to: "shooly#other"
+  # liff
+  get "liff_entry", to: "liff#entry"
+  post "liff_route", to: "liff#route"
+  get "(*other)", to: "shooly#other"
 end
