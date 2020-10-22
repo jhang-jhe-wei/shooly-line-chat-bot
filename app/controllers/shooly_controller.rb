@@ -17,6 +17,7 @@ class ShoolyController < ApplicationController
   end
 
   def map
+    @todo = Todo.new
   end
 
   def technician_information
