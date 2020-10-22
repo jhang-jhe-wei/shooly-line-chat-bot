@@ -116,7 +116,6 @@ class ShoolyController < ApplicationController
     when "嘉義市" then render "shooly/location2"
     when "新竹縣" then render "shooly/location2"
   end
-    render "shooly/location2"
   end
 
   def location3
