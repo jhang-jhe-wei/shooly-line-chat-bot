@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get "結束諮詢", to: "shooly#end_contact"
   get "取消", to: "shooly#thanks"
   get "查看技師目前位置", to: "shooly#map"
+  get "map", to: "shooly#map"
   get "/0", to: "shooly#privacy"
   get "/1", to: "shooly#order_information"
   get "/2", to: "shooly#service_home_wash"

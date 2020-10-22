@@ -1,57 +1,57 @@
 <%= raw ({
-         "type": "flex",
-         "altText": "FIFA Home",
-         "contents": {
-           "type": "bubble",
-           "direction": "ltr",
-           "header": {
-             "type": "box",
-             "layout": "vertical",
-             "backgroundColor": "#0E86CCFF",
-             "contents": [
-               {
-                       "type": "text",
-                       "text": "訂單已建立",
-                       "size": "xl",
-                       "color": "#FFFFFFFF",
-                       "align": "center",
-                       "contents": [],
-                     },
-             ],
-           },
-           "body": {
-             "type": "box",
-             "layout": "vertical",
-             "contents": [
-               {
-                       "type": "text",
-                       "text": "您預約的技師將在6分鐘到達!",
-                       "align": "center",
-                       "contents": [],
-                     },
-             ],
-           },
-           "footer": {
-             "type": "box",
-             "layout": "vertical",
-             "contents": [
-               {
-                       "type": "button",
-                       "action": {
-                         "type": "message",
-                         "label": "聯絡技師 #{@user.technician}",
-                         "text": "聯絡技師 #{@user.technician}",
-                       },
-                     },
-               {
-                       "type": "button",
-                       "action": {
-                         "type": "uri",
-                         "label": "查看技師目前位置",
-                         "uri": map_path,
-                       },
-                     },
-             ],
-           },
-         },
-       }).to_json %>
+            "type": "flex",
+            "altText": "FIFA Home",
+            "contents": {
+              "type": "bubble",
+              "direction": "ltr",
+              "header": {
+                "type": "box",
+                "layout": "vertical",
+                "backgroundColor": "#0E86CCFF",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "訂單已建立",
+                    "size": "xl",
+                    "color": "#FFFFFFFF",
+                    "align": "center",
+                    "contents": [],
+                  },
+                ],
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "您預約的技師將在6分鐘到達!",
+                    "align": "center",
+                    "contents": [],
+                  },
+                ],
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "message",
+                      "label": "聯絡技師 #{@user.technician}",
+                      "text": "聯絡技師 #{@user.technician}",
+                    },
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "uri",
+                      "label": "查看技師目前位置",
+                      "uri": "http://address.shooly.homiestudio.com.tw/?addressA=%E5%8F%B0%E5%8C%97%E5%B8%82&addressB=%E6%96%B0%E5%8C%97%E5%B8%82",
+                    },
+                  },
+                ],
+              },
+            },
+          }).to_json %>
