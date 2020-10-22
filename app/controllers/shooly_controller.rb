@@ -16,6 +16,9 @@ class ShoolyController < ApplicationController
     render "weather/show"
   end
 
+  def map
+  end
+
   def technician_information
     @technician = params[:technician]
   end
