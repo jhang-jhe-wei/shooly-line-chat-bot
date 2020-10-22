@@ -17,7 +17,6 @@ class ShoolyController < ApplicationController
   end
 
   def map
-    redirect_to 'http://www.homiestudio.com.tw/'
   end
 
   def technician_information
