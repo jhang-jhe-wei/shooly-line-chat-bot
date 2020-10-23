@@ -56,7 +56,6 @@ class ShoolyController < ApplicationController
         end
       end
     end
-  end
     render "weather/show"
   end
 
