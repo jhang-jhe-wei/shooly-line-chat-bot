@@ -1,7 +1,4 @@
 require "uri"
-require "net/http"
-require "JSON"
-require "date"
 
 class ShoolyController < ApplicationController
   protect_from_forgery with: :null_session
