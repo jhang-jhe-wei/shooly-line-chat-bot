@@ -1,57 +1,57 @@
 <%= raw ({
-            "type": "flex",
-            "altText": "FIFA Home",
-            "contents": {
-              "type": "bubble",
-              "direction": "ltr",
-              "header": {
-                "type": "box",
-                "layout": "vertical",
-                "backgroundColor": "#0E86CCFF",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "訂單已建立",
-                    "size": "xl",
-                    "color": "#FFFFFFFF",
-                    "align": "center",
-                    "contents": [],
-                  },
-                ],
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "您預約的技師將在6分鐘到達!",
-                    "align": "center",
-                    "contents": [],
-                  },
-                ],
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "message",
-                      "label": "聯絡技師 #{@user.technician}",
-                      "text": "聯絡技師 #{@user.technician}",
-                    },
-                  },
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "uri",
-                      "label": "查看技師目前位置",
-                      "uri": "http://address.shooly.homiestudio.com.tw/?addressA=#{@user.location3}&addressB=嘉義市公所",
-                    },
-                  },
-                ],
-              },
-            },
-          }).to_json %>
+         "type": "flex",
+         "altText": "FIFA Home",
+         "contents": {
+           "type": "bubble",
+           "direction": "ltr",
+           "header": {
+             "type": "box",
+             "layout": "vertical",
+             "backgroundColor": "#0E86CCFF",
+             "contents": [
+               {
+                       "type": "text",
+                       "text": "訂單已建立",
+                       "size": "xl",
+                       "color": "#FFFFFFFF",
+                       "align": "center",
+                       "contents": [],
+                     },
+             ],
+           },
+           "body": {
+             "type": "box",
+             "layout": "vertical",
+             "contents": [
+               {
+                       "type": "text",
+                       "text": "您預約的技師將在6分鐘到達!",
+                       "align": "center",
+                       "contents": [],
+                     },
+             ],
+           },
+           "footer": {
+             "type": "box",
+             "layout": "vertical",
+             "contents": [
+               {
+                       "type": "button",
+                       "action": {
+                         "type": "message",
+                         "label": "聯絡技師 #{@user.technician}",
+                         "text": "聯絡技師 #{@user.technician}",
+                       },
+                     },
+               {
+                       "type": "button",
+                       "action": {
+                         "type": "uri",
+                         "label": "查看技師目前位置",
+                         "uri": "http://address.shooly.homiestudio.com.tw/?addressA=#{@user.location}&addressB=嘉義市公所",
+                       },
+                     },
+             ],
+           },
+         },
+       }).to_json %>
