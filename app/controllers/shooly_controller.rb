@@ -17,6 +17,8 @@ class ShoolyController < ApplicationController
     response = Net::HTTP.get(uri).force_encoding("UTF-8") # => String
     s = JSON.parse response
     value = ""
+    puts "location: #{@user.location2}"
+    puts "date: #{@date.strftime("%Y-%m-%d")} 06:00:00"
     s["records"]["locations"][0]["location"].each do |item|
       if item["locationName"] == @user.location2
         item["weatherElement"][0]["time"].each do |element|
