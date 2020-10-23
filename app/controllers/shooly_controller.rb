@@ -34,11 +34,11 @@ class ShoolyController < ApplicationController
       if item.include?("降雨機率")
         value = item.delete("降雨機率 ").delete("%").to_i
         if value <= 10
-          @str = "喔嗨呦，#{@date.strftime("%Y-%m-%d ")}的天氣晴，降雨機率#{value}%，很適合清洗水塔、洗冷氣室外機以及一般水電修繕唷～"
+          @str = "喔嗨呦，#{@date.strftime("%m/%d ")}的天氣晴，降雨機率#{value}%，很適合清洗水塔、洗冷氣室外機以及一般水電修繕唷～"
         elsif value <= 20
-          @str = "喔嗨呦，#{@date.strftime("%Y-%m-%d ")}的天氣晴，降雨機率#{value}%，很適合清洗水塔、洗冷氣室外機以及一般水電修繕唷～"
+          @str = "喔嗨呦，#{@date.strftime("%m/%d ")}的天氣晴，降雨機率#{value}%，很適合清洗水塔、洗冷氣室外機以及一般水電修繕唷～"
         elsif value <= 30
-          @str = "喔嗨呦，#{@date.strftime("%Y-%m-%d ")}的天氣晴，降雨機率#{value}%，很適合清洗水塔、洗冷氣室外機以及一般水電修繕唷～"
+          @str = "喔嗨呦，#{@date.strftime("%m/%d ")}的天氣晴，降雨機率#{value}%，很適合清洗水塔、洗冷氣室外機以及一般水電修繕唷～"
         elsif value <= 40
           @str = "喔嗨呦，#{@date.strftime("%Y-%m-%d ")}可能會下雨，降雨機率#{value}%，出門請記得帶雨傘，建議不要從事戶外修繕工作"
         elsif value <= 50
