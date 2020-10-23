@@ -20,13 +20,14 @@ class ShoolyController < ApplicationController
     s["records"]["locations"][0]["location"].each do |item|
       if item["locationName"] == @user.location2
         item["weatherElement"][0]["time"].each do |element|
-          if element["startTime"].== @date.strftime("%Y-%m-%d %I:%M:%S")
+          if element["startTime"].== "#{@date.strftime("%Y-%m-%d")} 06:00:00"
             value = element["elementValue"][0]["value"]
           end
         end
       end
     end
     @str = value
+    puts "value: #{value}"
     value.split("。").each do |item|
       if item.include?("降雨機率")
         value = item.delete("降雨機率 ").delete("%").to_i
