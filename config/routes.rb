@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "天氣分析", to: "shooly#weather"
   #get "(*date)(*location)天氣", to: "weather#show"
   #get "(*location)天氣(*other)", to: "weather#show"
+  get "客服電話", to: "shooly#service"
   get "精選文章", to: "shooly#news"
   get "立即預約", to: "shooly#service_type"
   get "水電維修", to: "shooly#service_plumber"
