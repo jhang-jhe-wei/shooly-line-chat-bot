@@ -1,17 +1,275 @@
-<% content_for :title, "Order" %>
-<%= form_with url: create_order_path do |form| %>
 
-  <div class="field">
-  <%= form.label :預約人姓名%>
-  <%= form.text_field :name %>
-  </div>
 
-  <div class="field">
-  <%= form.label :預約人電話%>
-  <%= form.text_field :location %>
-  </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shooly</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;900&display=swap');
+        *{
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        body{
+            margin:0;
+        }
+        .line{
+            background-color: #f2f2f2;
+            display:block;
+            width:100vw;
+            height:8px;
+        }
+        .container{
+            width:80%;
+            margin: 0 auto;
+        }
+        .topic{
+            font-weight: 500;
+            font-size: 18px;
+            padding-bottom: 10px;
+            margin-top: 15px;
+        }
+        .content{
+            color:#0c4278;
+            font-weight: 100;
+            margin-top: 17px;
+            padding-bottom: 17px;
+            border-bottom: 1px solid #eeeeee;
+            position: relative;
+           
+        }
+        .setting{
+            width:100%;
+            text-align: center;
+            margin-top:10%;
+        }
+        .setting input{
+            width:60%;
+            background-color: white;
+            border:2px solid #2d77ed;
+            padding:5px 5px;
+            font-size: 20px;
+            border-radius: 15px;
 
-   <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+        }
+        .left{
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        .right{
+            position: absolute;
+            right:0;
+            top:0;
+        }
+        .block{
+            display: inline-block;
+        }
+        .top_topic{
+            width:100%;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+        #set_name{
+            height:80vh;
+            width:100vw;
+            position: absolute;
+            top:0;
+            left:0;
+            display: none;
+            background-color: white;;
+        }
+        #set_name p{
+            color:#999696;
+            font-size: 15px;
+        }
+        #ipt_new_name{
+            width:90%;
+            background-color: #f2f2f2;
+            border:none;
+            padding:10px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        #btn_set_name{
+            position: absolute;
+            right:8%;
+            bottom:40%;
+            background-color: #012542;
+            color:white;
+            border:none;
+            border-radius: 50%;
+            width:65px;
+            height: 65px;
+            text-align: center;
+
+        }
+        #ipt_time{
+            width:90%;
+            background-color: #f2f2f2;
+            border:none;
+            padding:10px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        #ipt_date{
+            width:90%;
+            background-color: #f2f2f2;
+            border:none;
+            padding:10px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        #btn_order{
+            width:80%;
+            background-color: #0371a1;
+            color:white;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 12px;
+            border:none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="top_topic">預約</div>
+    <div class="container">
+         <div class="topic">個人資訊</div>
+          <div class="content" id="data_name" onclick="setName(this.id)">
+             <div class="block" id="field_name" >陳彥家</div>
+             <div class="right">變更 〉</div>
+         </div>
+         <div class="content" id="data_phone" onclick="setName(this.id)">
+             <div class="block" id="field_phone" >+886 975665895</div>
+             <div class="right">變更 〉</div>
+         </div>
+    </div>
+    
+    <div class="line"></div>
+
+    <div class="container">
+        <div class="topic">預約地址</div>
+         <div class="content" id="data_address1" onclick="setName(this.id)">
+            <div class="block" id="field_address">台北市中山區大直街</div>
+            <div class="right">變更 〉</div>
+        </div>
+   </div>
+   
+   <div class="line"></div>
+
+   <div class="container">
+        <div class="topic">預約時間</div>
+         <div class="content" id="data_address1">
+
+            <input type="date" id="ipt_date"/>
+             <input type="time" id="ipt_time" style="margin-top: 20px;" />
+        </div>
+    </div>
+    
+   <div style="width:100%;text-align: center; margin-top: 50px;"> <input type="button" value="送出訂單" id="btn_order" onclick="sendOrder()" /></div>
+
+   <div id="set_name">
+    <div class="container">
+        <div class="top_topic" id="set_topic">更換姓名</div>
+            <input placeholder="輸入姓名" id="ipt_new_name"  />
+            <p id="set_help">SS</p>
+            <input type="button" value="＞" id="btn_set_name" onclick="setNameOnclick()" />
+    </div>
+   </div>
+   
+
+
+<script>
+
+var current_step = "none";
+
+function setName(id){
+    current_step = id;
+    const set_topic = document.getElementById("set_topic");
+    const set_name  = document.getElementById("ipt_new_name");
+    const set_help  = document.getElementById("set_help");
+    var name = document.getElementById("set_name");
+    if(current_step == "data_name"){
+        set_topic.innerHTML = "更換姓名";
+        set_name.placeholder = "輸入姓名";
+        set_help.innerHTML= "請輸入您預約時需要使用的姓名。";
+        set_name.value = document.getElementById("field_name").innerHTML;
+
+    }
+    else if(current_step == "data_phone"){
+        set_topic.innerHTML = "更換電話";
+        set_name.placeholder = "輸入電話";
+        set_help.innerHTML= "請輸入您預約時需要使用的電話。";
+        set_name.value = document.getElementById("field_phone").innerHTML;
+        
+    }
+    else if(current_step == "data_address1"){
+        set_topic.innerHTML = "更換地址";
+        set_name.placeholder = "輸入地址";
+        set_help.innerHTML= "請輸入您需要技師前往的地址。";
+        set_name.value = document.getElementById("field_address").innerHTML;
+    }
+    name.style.display = "block";
+}
+function setNameOnclick(){
+
+    const name = document.getElementById("set_name");
+    const newName = document.getElementById("ipt_new_name").value;
+    if(current_step == "data_name"){
+        var oldName = document.getElementById("field_name");
+        oldName.innerHTML = newName;
+    }
+    else if(current_step == "data_phone"){
+        document.getElementById("field_phone").innerHTML = newName;
+    }
+    else if(current_step == "data_address1"){
+        document.getElementById("field_address").innerHTML = newName;
+    }
+    name.style.display = "none";
+}
+
+function sendOrder(){
+    const name = document.getElementById("field_name").innerHTML;
+    const phone = document.getElementById("field_phone").innerHTML;
+    const address = document.getElementById("field_address").innerHTML;
+    const date = document.getElementById("ipt_date").value;
+    const time = document.getElementById("ipt_time").value;
+   
+    //在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST
+    
+    post_to_url(new_order_path, {'name':name,'phone':phone,'address':address,'date':date,'time':time});
+
+    //在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST
+}
+
+function post_to_url(path, params, method) {
+    method = method || "post"; 
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", key);
+        hiddenField.setAttribute("value", params[key]);
+
+        form.appendChild(hiddenField);
+    }
+
+    document.body.appendChild(form);    
+    form.submit();
+}
+
+
+
+
+</script>
+</body>
+</html>

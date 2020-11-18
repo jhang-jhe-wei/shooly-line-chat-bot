@@ -9,6 +9,7 @@ class DevController < ApplicationController
     response = line.get_profile @user.line_id
     puts "----------------------test#{response.body}"
   end
+
   def create_order
     render "dev/check_order"
   end
@@ -22,7 +23,9 @@ class DevController < ApplicationController
   def create_technician
     technician = Technician.find_by line_id: params[:source_user_id]
     if technician.nil?
-      Technician.create line_id: params[:source_user_id],name: params[:name],location: params[:location]
+      response = line.get_profile @user.line_id
+      json = JSON.parse response.body
+      Technician.create line_id: params[:source_user_id],name: params[:name],location: params[:location],photo: json["pictureUrl"]
     end
   end
 
@@ -56,7 +59,12 @@ class DevController < ApplicationController
   end
 
   def close_contact
+    puts "---------------------in close contact"
     line.push_message(@user.contact_id, { "type": "text", "text": "[結束諮詢]" })
+    @contact_user = User.find_by line_id: @user.contact_id
+    @contact_user.contact_flag=false
+    @contact_user.contact_id=nil
+    @contact_user.save
     @user.contact_flag=false
     @user.contact_id=nil
     @user.save
@@ -142,6 +150,11 @@ class DevController < ApplicationController
         @user.location = params[:other]
         puts "------------other#{@user.location}"
         @user.save
+        uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=#{@user.location}&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
+        uri = URI(uri)
+        response = Net::HTTP.get(uri).force_encoding("UTF-8")
+        json = JSON.parse response
+        @location = json["results"][0]["geometry"]["location"]
         render "dev/check_location"
       end
       
