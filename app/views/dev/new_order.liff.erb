@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <title>Shooly</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;900&display=swap');
@@ -21,7 +23,7 @@
             height:8px;
         }
         .container{
-            width:80%;
+            width:95%;
             margin: 0 auto;
         }
         .topic{
@@ -85,6 +87,7 @@
         #set_name p{
             color:#999696;
             font-size: 15px;
+            margin-top: 20px;
         }
         #ipt_new_name{
             width:90%;
@@ -187,6 +190,7 @@
 
 <script>
 
+
 var current_step = "none";
 
 function setName(id){
@@ -243,9 +247,34 @@ function sendOrder(){
    
     //在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST
     
-    post_to_url(new_order_path, {'name':name,'phone':phone,'address':address,'date':date,'time':time});
-
+   // post_to_url('/order/', {'name':name,'phone':phone,'address':address,'date':date,'time':time});
+    
+   //.post("order",
+   //{
+   //  name: name,
+   //  phone: phone,
+   //  address:address,
+   //  date:date,
+   //  time:time
+   //},
+   //function(data,status){
+   //    liff.closeWindow();
+   //});
     //在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST
+    var text = "[name]" + name + "[phone]" + phone + "[address]" +  address + "[date]" + date + "[time]" + time;
+    liff.sendMessages([
+  {
+    type: 'text',
+    text: text
+  }
+])
+  .then(() => {
+    console.log('message sent');
+  })
+  .catch((err) => {
+    console.log('error', err);
+  });
+
 }
 
 function post_to_url(path, params, method) {
@@ -266,7 +295,6 @@ function post_to_url(path, params, method) {
     document.body.appendChild(form);    
     form.submit();
 }
-
 
 
 

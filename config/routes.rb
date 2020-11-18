@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get "[結束諮詢]",to: "dev#close_contact"
   get "[接受諮詢] (*line_id)",to: "dev#accept_contact"
   get "test",to: "dev#test"
+  get "service_technician",to: "dev#service_technician"
+
   post "create_technician",to: "dev#create_technician"
   get "new_technician",to: "dev#new_technician"
 

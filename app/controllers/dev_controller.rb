@@ -5,13 +5,18 @@ class DevController < ApplicationController
   def follow
   end
 
+  def service_technician
+    @technicians=Technician.all
+  end
+
   def test
     response = line.get_profile @user.line_id
     puts "----------------------test#{response.body}"
   end
 
   def create_order
-    render "dev/check_order"
+    puts params
+    render "dev/service_type"
   end
 
   def new_order
