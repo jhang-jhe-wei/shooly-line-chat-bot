@@ -1,0 +1,17 @@
+<% content_for :title, "Technician" %>
+<%= form_with url: create_technician_path do |form| %>
+
+  <div class="field">
+  <%= form.label :姓名%>
+  <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+  <%= form.label :服務地點%>
+  <%= form.text_field :location %>
+  </div>
+
+   <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

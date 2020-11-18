@@ -1,0 +1,164 @@
+
+<%= raw ({
+          "type": "flex",
+          "altText": "FIFA Home",
+          "contents": {
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "預約明細",
+                  "weight": "bold",
+                  "size": "xl",
+                  "color": "#0773D3FF",
+                  "align": "start",
+                  "contents": [],
+                },
+                {
+                  "type": "text",
+                  "text": "2020/09/18 13:30",
+                  "color": "#A2A0A0FF",
+                  "margin": "lg",
+                  "contents": [],
+                },
+                {
+                  "type": "filler",
+                },
+                {
+                  "type": "separator",
+                  "margin": "sm",
+                },
+              ],
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "spacing": "none",
+                  "contents": [
+                    {
+                              "type": "box",
+                              "layout": "vertical",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "預約人：",
+                                  "weight": "bold",
+                                  "color": "#0773D3FF",
+                                  "contents": [],
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "#{@user.name}",
+                                  "weight": "bold",
+                                  "contents": [],
+                                },
+                              ],
+                            },
+                    {
+                              "type": "box",
+                              "layout": "vertical",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "項目：",
+                                  "weight": "bold",
+                                  "color": "#0773D3FF",
+                                  "align": "start",
+                                  "contents": [],
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "#{@user.content}",
+                                  "weight": "bold",
+                                  "align": "start",
+                                  "contents": [],
+                                },
+                              ],
+                            },
+                    {
+                              "type": "box",
+                              "layout": "vertical",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "技師：",
+                                  "weight": "bold",
+                                  "color": "#0773D3FF",
+                                  "contents": [],
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "#{@user.technician}",
+                                  "weight": "bold",
+                                  "contents": [],
+                                },
+                              ],
+                            },
+                    {
+                              "type": "box",
+                              "layout": "vertical",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "地址：",
+                                  "weight": "bold",
+                                  "color": "#0773D3FF",
+                                  "contents": [],
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "#{@user.location}",
+                                  "weight": "bold",
+                                  "contents": [],
+                                },
+                              ],
+                            },
+                    {
+                              "type": "box",
+                              "layout": "vertical",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "電話號碼：",
+                                  "weight": "bold",
+                                  "color": "#0773D3FF",
+                                  "contents": [],
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "#{@user.phone}",
+                                  "weight": "bold",
+                                  "contents": [],
+                                },
+                              ],
+                            },
+                  ],
+                },
+              ],
+            },
+            "footer": {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "立即預約",
+                    "text": "確認訂單",
+                  },
+                  "color": "#0AE0B1FF",
+                  "style": "primary",
+                },
+              ],
+            },
+          },
+        }).to_json %>

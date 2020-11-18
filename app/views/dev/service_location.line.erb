@@ -1,0 +1,73 @@
+<%= raw ({
+            "type": "flex",
+            "altText": "this is flex",
+            "contents": {
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://storage.googleapis.com/address.shooly.homiestudio.com.tw/files/shooly_address.jpg",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "http://linecorp.com/"
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "搜尋附近技師",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "text",
+        "text": "請選擇以下項目"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "#{@user.location1}",
+          "text": "[選擇地址] #{@user.location1}"
+        }
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "#{@user.location2}",
+          "text": "[選擇地址] #{@user.location2}"
+        }
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "新增地址",
+          "text": "[選擇地址] 新增地址"
+        }
+      },
+      {
+        "type": "spacer"
+      }
+    ],
+    "flex": 0
+  }
+}
+          }).to_json %>

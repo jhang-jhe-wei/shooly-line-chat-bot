@@ -1,0 +1,17 @@
+<% content_for :title, "Order" %>
+<%= form_with url: create_order_path do |form| %>
+
+  <div class="field">
+  <%= form.label :預約人姓名%>
+  <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+  <%= form.label :預約人電話%>
+  <%= form.text_field :location %>
+  </div>
+
+   <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,65 @@
+<%= raw ({
+            "type": "flex",
+            "altText": "this is flex",
+            "contents": {
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=512x512&markers=icon:https://storage.googleapis.com/address.shooly.homiestudio.com.tw/img_icon_map.png%7C34.152230,-118.243680&key=AIzaSyCUee-vGh3HaoZ5GfC3n6boQHVQw2ai58A",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "http://linecorp.com/"
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "您輸入的地址是否正確？",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "text",
+        "text": "#{@user.location}"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "正確",
+          "text": "[設定地址] 正確"
+        }
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "重新輸入",
+          "text": "[設定地址] 重新輸入"
+        }
+      },
+      {
+        "type": "spacer"
+      }
+    ],
+    "flex": 0
+  }
+}
+          }).to_json %>

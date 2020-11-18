@@ -10,23 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_091036) do
+ActiveRecord::Schema.define(version: 2020_11_18_030709) do
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "technician_id"
     t.string "content"
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["technician_id"], name: "index_orders_on_technician_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "technicians", force: :cascade do |t|
+    t.string "line_id"
+    t.string "name"
+    t.string "comment"
+    t.string "location"
+    t.string "time"
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "contact_id"
+    t.boolean "contact_flag"
   end
 
   create_table "todos", force: :cascade do |t|
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_091036) do
     t.string "location"
     t.string "tel"
     t.boolean "privacy_flag"
-    t.boolean "location_flag"
+    t.integer "location_flag"
     t.integer "service_step"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,11 +53,14 @@ ActiveRecord::Schema.define(version: 2020_09_21_091036) do
     t.string "location3"
     t.string "content"
     t.datetime "time"
-    t.string "technician"
     t.string "name"
     t.string "phone"
     t.string "name_flag"
     t.string "phone_flag"
+    t.integer "technician_id"
+    t.string "contact_id"
+    t.boolean "contact_flag"
+    t.index ["technician_id"], name: "index_users_on_technician_id"
   end
 
 end
