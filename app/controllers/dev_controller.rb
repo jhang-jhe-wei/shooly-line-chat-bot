@@ -929,7 +929,7 @@ end
               "action": {
                 "type": "uri",
                 "label": "立即預約",
-                "uri": "https://liff.line.me/1655118814-BJejkxKg/liff_entry?path=/new_order/#{item.line_id}",
+                "uri": "#{ENV['LIFF_COMPACT']}/liff_entry?path=/new_order/#{item.line_id}",
               },
               "height": "sm",
               "style": "link",
@@ -1138,7 +1138,7 @@ end
               "action": {
                 "type": "uri",
                 "label": "立即預約",
-                "uri": "https://liff.line.me/1655118814-BJejkxKg/liff_entry?path=/new_order/#{item.line_id}",
+                "uri": "#{ENV['LIFF_COMPACT']}/liff_entry?path=/new_order/#{item.line_id}/liff_entry?path=/new_order/#{item.line_id}",
               },
               "height": "sm",
               "style": "link",
