@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="fw91QQimI8HWY8ppSsBhw4+rPNYM0po9UxSPxQ6GV0QAUtXH8UI3Kx6yHc+03N9maLa2Frg0GEZ495VawU/2Ug==" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Shooly</title>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+    body{
+        margin:0 auto;
+    }
+
+#star{
+    color:#f2d61f;
+    font-size: 50px;
+}
+.container{
+    width:90%;
+    margin:0 auto;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: white;
+}
+#next{
+    margin-top: 50px;
+    width:60px;
+    height:60px;
+    background-color: #f2d61f;
+    color:white;
+    font-size: 30px;
+    border-radius: 50%;
+    text-align: center;
+    border:none;
+    margin-left: 60%;
+
+}
+#next2{
+    margin-top: 50px;
+    width:60px;
+    height:60px;
+    background-color: #f2d61f;
+    color:white;
+    font-size: 30px;
+    border-radius: 50%;
+    text-align: center;
+    border:none;
+    margin-left: 60%;
+
+}
+textarea{
+    width:80%;
+    background-color: #f2f2f2;
+    border:none;
+    padding:10px;
+    border-radius: 10px;
+    font-size: 16px;
+    height:150px;
+    margin-top: 30px;
+}
+.content{
+    border-bottom: 1px #e0e0e0 solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    color:#1e5473;
+}
+textarea{
+    width:90%;
+    background-color: #f2f2f2;
+    border:none;
+    padding:10px;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.btn{
+    background-color: #1e5473;
+    color:white;
+    padding: 10px 90px;
+    border:none;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body> 
+
+    <form action="/create_comment" accept-charset="UTF-8" data-remote="true" method="post">
+        <input name="utf8" type="hidden" value="&#x2713;" />
+        <input type="hidden" name="authenticity_token" value="zqia512MembIUJ+XPgO7XKBv2ilppOAxT0YD6tBfzOGakr7QjOSaVjm4zPybLoaK2q3nV7ValWU3GKa0L678vQ==" />
+       <input id="val1" type="hidden" name="val1" />
+       <input id="val2" type="hidden" name="val2" />
+       <input id="val3" type="hidden" name="val3" />
+       <input id="val4" type="hidden" name="val4" />
+    
+
+    <div class="container">
+        
+        <div class="topic">技師評價</div>
+        <div class="content">
+            <div style="width:35%;display:inline-block">服務態度</div>
+            <div style="width:63%;display:inline-block;text-align: right; color:#f2d61f; font-size: 30px;">
+                <div onclick="s1_s1()" style="display: inline-block;" id="s1_s1">★</div>
+                <div onclick="s1_s2()" style="display: inline-block;" id="s1_s2">★</div>
+                <div onclick="s1_s3()" style="display: inline-block;" id="s1_s3">★</div>
+                <div onclick="s1_s4()" style="display: inline-block;" id="s1_s4">★</div>
+                <div onclick="s1_s5()" style="display: inline-block;" id="s1_s5">★</div>
+            </div>
+        </div>
+        
+        
+        <div class="content">
+            <div style="width:35%;display:inline-block">效率</div>
+            <div style="width:63%;display:inline-block;text-align: right; color:#f2d61f; font-size: 30px;">
+                <div onclick="s2_s1()" style="display: inline-block;" id="s2_s1">★</div>
+                <div onclick="s2_s2()" style="display: inline-block;" id="s2_s2">★</div>
+                <div onclick="s2_s3()" style="display: inline-block;" id="s2_s3">★</div>
+                <div onclick="s2_s4()" style="display: inline-block;" id="s2_s4">★</div>
+                <div onclick="s2_s5()" style="display: inline-block;" id="s2_s5">★</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div style="width:35%;display:inline-block">專業度</div>
+            <div style="width:63%;display:inline-block;text-align: right; color:#f2d61f; font-size: 30px;">
+                <div onclick="s3_s1()" style="display: inline-block;" id="s3_s1">★</div>
+                <div onclick="s3_s2()" style="display: inline-block;" id="s3_s2">★</div>
+                <div onclick="s3_s3()" style="display: inline-block;" id="s3_s3">★</div>
+                <div onclick="s3_s4()" style="display: inline-block;" id="s3_s4">★</div>
+                <div onclick="s3_s5()" style="display: inline-block;" id="s3_s5">★</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div style="width:35%;display:inline-block">價格合理度</div>
+            <div style="width:63%;display:inline-block;text-align: right; color:#f2d61f; font-size: 30px;">
+                <div onclick="s4_s1()" style="display: inline-block;" id="s4_s1">★</div>
+                <div onclick="s4_s2()" style="display: inline-block;" id="s4_s2">★</div>
+                <div onclick="s4_s3()" style="display: inline-block;" id="s4_s3">★</div>
+                <div onclick="s4_s4()" style="display: inline-block;" id="s4_s4">★</div>
+                <div onclick="s4_s5()" style="display: inline-block;" id="s4_s5">★</div>
+            </div>
+        </div>
+        <div class="content" style="margin-top: 30px; border-bottom: none;">
+            <div style="width:100%; text-align: left;">幫助我們評價技師</div>
+            <textarea name="comment" cols="40" rows="4"></textarea>
+        </div>
+        <div class="send">
+            <input type="submit" class="btn" value="送出評價" data-disable-with="提交" />
+        </div>
+        
+    </div>
+
+
+</form>
+
+<script>
+    const s1s1 = document.getElementById("s1_s1");
+    const s1s2 = document.getElementById("s1_s2");
+    const s1s3 = document.getElementById("s1_s3");
+    const s1s4 = document.getElementById("s1_s4");
+    const s1s5 = document.getElementById("s1_s5");
+    const s2s1 = document.getElementById("s2_s1");
+    const s2s2 = document.getElementById("s2_s2");
+    const s2s3 = document.getElementById("s2_s3");
+    const s2s4 = document.getElementById("s2_s4");
+    const s2s5 = document.getElementById("s2_s5");
+    const s3s1 = document.getElementById("s3_s1");
+    const s3s2 = document.getElementById("s3_s2");
+    const s3s3 = document.getElementById("s3_s3");
+    const s3s4 = document.getElementById("s3_s4");
+    const s3s5 = document.getElementById("s3_s5");
+    const s4s1 = document.getElementById("s4_s1");
+    const s4s2 = document.getElementById("s4_s2");
+    const s4s3 = document.getElementById("s4_s3");
+    const s4s4 = document.getElementById("s4_s4");
+    const s4s5 = document.getElementById("s4_s5");
+    var val1 = document.getElementById("val1");
+    var val2 = document.getElementById("val2");
+    var val3 = document.getElementById("val3");
+    var val4 = document.getElementById("val4");
+    var comment = document.getElementById("comment");
+    val1.value = "5";
+    val2.value = "5";
+    val3.value = "5";
+    val4.value = "5";
+    function s1_s1(){
+        s1s1.style.color = "#f2d61f";
+        s1s2.style.color = "#eeeeee";
+        s1s3.style.color = "#eeeeee";
+        s1s4.style.color = "#eeeeee";
+        s1s5.style.color = "#eeeeee";
+        val1.value = "1";
+    }
+    function s1_s2(){
+        s1s1.style.color = "#f2d61f";
+        s1s2.style.color = "#f2d61f";
+        s1s3.style.color = "#eeeeee";
+        s1s4.style.color = "#eeeeee";
+        s1s5.style.color = "#eeeeee";
+        val1.value = "2";
+    }
+    function s1_s3(){
+        s1s1.style.color = "#f2d61f";
+        s1s2.style.color = "#f2d61f";
+        s1s3.style.color = "#f2d61f";
+        s1s4.style.color = "#eeeeee";
+        s1s5.style.color = "#eeeeee";
+        val1.value = "3";
+    }
+    function s1_s4(){
+        s1s1.style.color = "#f2d61f";
+        s1s2.style.color = "#f2d61f";
+        s1s3.style.color = "#f2d61f";
+        s1s4.style.color = "#f2d61f";
+        s1s5.style.color = "#eeeeee";
+        val1.value = "4";
+    }
+    function s1_s5(){
+        s1s1.style.color = "#f2d61f";
+        s1s2.style.color = "#f2d61f";
+        s1s3.style.color = "#f2d61f";
+        s1s4.style.color = "#f2d61f";
+        s1s5.style.color = "#f2d61f";
+        val1.value = "5";
+    }
+    function s2_s1(){
+        s2s1.style.color = "#f2d61f";
+        s2s2.style.color = "#eeeeee";
+        s2s3.style.color = "#eeeeee";
+        s2s4.style.color = "#eeeeee";
+        s2s5.style.color = "#eeeeee";
+        val2.value = "1";
+    }
+    function s2_s2(){
+        s2s1.style.color = "#f2d61f";
+        s2s2.style.color = "#f2d61f";
+        s2s3.style.color = "#eeeeee";
+        s2s4.style.color = "#eeeeee";
+        s2s5.style.color = "#eeeeee";
+        val2.value = "2";
+    }
+    function s2_s3(){
+        s2s1.style.color = "#f2d61f";
+        s2s2.style.color = "#f2d61f";
+        s2s3.style.color = "#f2d61f";
+        s2s4.style.color = "#eeeeee";
+        s2s5.style.color = "#eeeeee";
+        val2.value = "3";
+    }
+    function s2_s4(){
+        s2s1.style.color = "#f2d61f";
+        s2s2.style.color = "#f2d61f";
+        s2s3.style.color = "#f2d61f";
+        s2s4.style.color = "#f2d61f";
+        s2s5.style.color = "#eeeeee";
+        val2.value = "4";
+    }
+    function s2_s5(){
+        s2s1.style.color = "#f2d61f";
+        s2s2.style.color = "#f2d61f";
+        s2s3.style.color = "#f2d61f";
+        s2s4.style.color = "#f2d61f";
+        s2s5.style.color = "#f2d61f";
+        val2.value = "5";
+    }
+    function s3_s1(){
+        s3s1.style.color = "#f2d61f";
+        s3s2.style.color = "#eeeeee";
+        s3s3.style.color = "#eeeeee";
+        s3s4.style.color = "#eeeeee";
+        s3s5.style.color = "#eeeeee";
+        val3.value = "1";
+    }
+    function s3_s2(){
+        s3s1.style.color = "#f2d61f";
+        s3s2.style.color = "#f2d61f";
+        s3s3.style.color = "#eeeeee";
+        s3s4.style.color = "#eeeeee";
+        s3s5.style.color = "#eeeeee";
+        val3.value = "2";
+    }
+    function s3_s3(){
+        s3s1.style.color = "#f2d61f";
+        s3s2.style.color = "#f2d61f";
+        s3s3.style.color = "#f2d61f";
+        s3s4.style.color = "#eeeeee";
+        s3s5.style.color = "#eeeeee";
+        val3.value = "3";
+    }
+    function s3_s4(){
+        s3s1.style.color = "#f2d61f";
+        s3s2.style.color = "#f2d61f";
+        s3s3.style.color = "#f2d61f";
+        s3s4.style.color = "#f2d61f";
+        s3s5.style.color = "#eeeeee";
+        val3.value = "4";
+    }
+    function s3_s5(){
+        s3s1.style.color = "#f2d61f";
+        s3s2.style.color = "#f2d61f";
+        s3s3.style.color = "#f2d61f";
+        s3s4.style.color = "#f2d61f";
+        s3s5.style.color = "#f2d61f";
+        val3.value = "5";
+    }
+    function s4_s1(){
+        s4s1.style.color = "#f2d61f";
+        s4s2.style.color = "#eeeeee";
+        s4s3.style.color = "#eeeeee";
+        s4s4.style.color = "#eeeeee";
+        s4s5.style.color = "#eeeeee";
+        val4.value = "1";
+    }
+    function s4_s2(){
+        s4s1.style.color = "#f2d61f";
+        s4s2.style.color = "#f2d61f";
+        s4s3.style.color = "#eeeeee";
+        s4s4.style.color = "#eeeeee";
+        s4s5.style.color = "#eeeeee";
+        val4.value = "2";
+    }
+    function s4_s3(){
+        s4s1.style.color = "#f2d61f";
+        s4s2.style.color = "#f2d61f";
+        s4s3.style.color = "#f2d61f";
+        s4s4.style.color = "#eeeeee";
+        s4s5.style.color = "#eeeeee";
+        val4.value = "3";
+    }
+    function s4_s4(){
+        s4s1.style.color = "#f2d61f";
+        s4s2.style.color = "#f2d61f";
+        s4s3.style.color = "#f2d61f";
+        s4s4.style.color = "#f2d61f";
+        s4s5.style.color = "#eeeeee";
+        val4.value = "4";
+    }
+    function s4_s5(){
+        s4s1.style.color = "#f2d61f";
+        s4s2.style.color = "#f2d61f";
+        s4s3.style.color = "#f2d61f";
+        s4s4.style.color = "#f2d61f";
+        s4s5.style.color = "#f2d61f";
+        val4.value = "5";
+    }
+</script>
+
+</body>
+</html>

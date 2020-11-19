@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "完成訂單",to: "dev#check_finish_order"
   get "test",to: "dev#test"
   get "service_technician",to: "dev#service_technician"
+  post "create_comment",to: "dev#create_comment"
+  get "new_comment",to: "dev#new_comment"
   post "create_technician",to: "dev#create_technician"
   get "new_technician",to: "dev#new_technician"
 
