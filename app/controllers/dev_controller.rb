@@ -5,33 +5,46 @@ class DevController < ApplicationController
   def follow
   end
 
+  def accept_order
+  end
+
   def service_technician
     @technicians=Technician.all
   end
 
-  def test
-    response = line.get_profile @user.line_id
-    puts "----------------------test#{response.body}"
-  end
 
   def create_order
-    puts params
-    render "dev/service_type"
+    @order = Order.new technician_line_id: @user.technician_line_id,phone: params[:fphone],content: @user.content,location: params[:flocation],time: DateTime.parse(params[:fdatetime].to_s),name: params[:fname]
+    @order.save
+    @user.phone = params[:fphone]
+    @user.name = params[:fname]
+    @user.save
+    puts "------------#{@order.phone}"
+    puts "------------#{DateTime.parse(params[:fdatetime].to_s).class}"
+    render "dev/check_order"
   end
 
   def new_order
+
+    @user.technician_line_id = params[:line_id]
+    @user.save
   end
 
   def new_technician
   end
 
   def create_technician
-    technician = Technician.find_by line_id: params[:source_user_id]
-    if technician.nil?
-      response = line.get_profile @user.line_id
-      json = JSON.parse response.body
-      Technician.create line_id: params[:source_user_id],name: params[:name],location: params[:location],photo: json["pictureUrl"]
+    @technician = Technician.find_by line_id: params[:source_user_id]
+    if @technician.nil?      
+      @technician = Technician.new
     end
+    response = line.get_profile params[:source_user_id]
+    json = JSON.parse response.body
+    @technician.line_id = params[:source_user_id]
+    @technician.name = params[:name]
+    @technician.location = params[:location]
+    @technician.photo = json["pictureUrl"]
+    @technician.save
   end
 
   def contact
@@ -166,6 +179,13 @@ class DevController < ApplicationController
       if @user.contact_flag
         line.push_message(@user.contact_id, { "type": "text", "text": "#{params[:other]}" })
         render "dev/space"
+      end
+
+      if params[:other].include? "new_order?line_id="
+        puts "-----------------------#{params[:other]}"
+        @user.technician_line_id = params[:other].delete "new_order?line_id="
+        @user.save
+        render "dev/new_order"
       end
   end
 

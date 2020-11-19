@@ -4,9 +4,10 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="fw91QQimI8HWY8ppSsBhw4+rPNYM0po9UxSPxQ6GV0QAUtXH8UI3Kx6yHc+03N9maLa2Frg0GEZ495VawU/2Ug==" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <title>Shooly</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;900&display=swap');
@@ -110,15 +111,7 @@
             text-align: center;
 
         }
-        #ipt_time{
-            width:90%;
-            background-color: #f2f2f2;
-            border:none;
-            padding:10px;
-            border-radius: 10px;
-            font-size: 16px;
-        }
-        #ipt_date{
+        #fdatetime{
             width:90%;
             background-color: #f2f2f2;
             border:none;
@@ -140,16 +133,21 @@
 
 </head>
 <body>
-
+    <form action=<%= create_order_path %> accept-charset="UTF-8" data-remote="true" method="post">
+        <input name="utf8" type="hidden" value="&#x2713;" />
+        <input type="hidden" name="authenticity_token" value="zqia512MembIUJ+XPgO7XKBv2ilppOAxT0YD6tBfzOGakr7QjOSaVjm4zPybLoaK2q3nV7ValWU3GKa0L678vQ==" />
+        <input type="hidden" name="fname" id="fname" />
+        <input type="hidden" name="fphone" id="fphone" />
+        <input type="hidden" name="flocation" id="flocation" />
     <div class="top_topic">預約</div>
     <div class="container">
          <div class="topic">個人資訊</div>
           <div class="content" id="data_name" onclick="setName(this.id)">
-             <div class="block" id="field_name" >陳彥家</div>
+             <div class="block" id="name" >陳彥家</div>
              <div class="right">變更 〉</div>
          </div>
          <div class="content" id="data_phone" onclick="setName(this.id)">
-             <div class="block" id="field_phone" >+886 975665895</div>
+             <div class="block" id="phone" >+886 975665895</div>
              <div class="right">變更 〉</div>
          </div>
     </div>
@@ -159,7 +157,7 @@
     <div class="container">
         <div class="topic">預約地址</div>
          <div class="content" id="data_address1" onclick="setName(this.id)">
-            <div class="block" id="field_address">台北市中山區大直街</div>
+            <div class="block" id="location" name="location">台北市中山區大直街</div>
             <div class="right">變更 〉</div>
         </div>
    </div>
@@ -169,13 +167,11 @@
    <div class="container">
         <div class="topic">預約時間</div>
          <div class="content" id="data_address1">
-
-            <input type="date" id="ipt_date"/>
-             <input type="time" id="ipt_time" style="margin-top: 20px;" />
+            <input min="2020-11-18T06:07:56" max="2020-11-25T06:07:56" type="datetime-local" name="fdatetime" id="fdatetime" />
         </div>
     </div>
     
-   <div style="width:100%;text-align: center; margin-top: 50px;"> <input type="button" value="送出訂單" id="btn_order" onclick="sendOrder()" /></div>
+   <div style="width:100%;text-align: center; margin-top: 50px;"> <input type="submit" value="送出訂單" id="btn_order" data-disable-with="提交"  /></div>
 
    <div id="set_name">
     <div class="container">
@@ -185,13 +181,16 @@
             <input type="button" value="＞" id="btn_set_name" onclick="setNameOnclick()" />
     </div>
    </div>
+
    
+</form>
 
 
 <script>
 
 
 var current_step = "none";
+initial();
 
 function setName(id){
     current_step = id;
@@ -203,21 +202,23 @@ function setName(id){
         set_topic.innerHTML = "更換姓名";
         set_name.placeholder = "輸入姓名";
         set_help.innerHTML= "請輸入您預約時需要使用的姓名。";
-        set_name.value = document.getElementById("field_name").innerHTML;
-
+        set_name.value = document.getElementById("name").innerHTML;
+  initial();
     }
     else if(current_step == "data_phone"){
         set_topic.innerHTML = "更換電話";
         set_name.placeholder = "輸入電話";
         set_help.innerHTML= "請輸入您預約時需要使用的電話。";
-        set_name.value = document.getElementById("field_phone").innerHTML;
+        set_name.value = document.getElementById("phone").innerHTML;
+    initial();
         
     }
     else if(current_step == "data_address1"){
         set_topic.innerHTML = "更換地址";
         set_name.placeholder = "輸入地址";
         set_help.innerHTML= "請輸入您需要技師前往的地址。";
-        set_name.value = document.getElementById("field_address").innerHTML;
+        set_name.value = document.getElementById("location").innerHTML;
+    initial();
     }
     name.style.display = "block";
 }
@@ -226,74 +227,28 @@ function setNameOnclick(){
     const name = document.getElementById("set_name");
     const newName = document.getElementById("ipt_new_name").value;
     if(current_step == "data_name"){
-        var oldName = document.getElementById("field_name");
+        var oldName = document.getElementById("name");
+
         oldName.innerHTML = newName;
     }
     else if(current_step == "data_phone"){
-        document.getElementById("field_phone").innerHTML = newName;
+        document.getElementById("phone").innerHTML = newName;
     }
     else if(current_step == "data_address1"){
-        document.getElementById("field_address").innerHTML = newName;
+        document.getElementById("location").innerHTML = newName;
     }
     name.style.display = "none";
 }
-
-function sendOrder(){
-    const name = document.getElementById("field_name").innerHTML;
-    const phone = document.getElementById("field_phone").innerHTML;
-    const address = document.getElementById("field_address").innerHTML;
-    const date = document.getElementById("ipt_date").value;
-    const time = document.getElementById("ipt_time").value;
+function initial(){
+    const name = document.getElementById("name").innerHTML;
+    const phone = document.getElementById("phone").innerHTML;
+    const address = document.getElementById("location").innerHTML;
+    const date = document.getElementById("fdatetime").value;
+    document.getElementById("fname").value = name;
+    document.getElementById("fphone").value = phone;
+    document.getElementById("flocation").value = address;
    
-    //在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST
-    
-   // post_to_url('/order/', {'name':name,'phone':phone,'address':address,'date':date,'time':time});
-    
-   //.post("order",
-   //{
-   //  name: name,
-   //  phone: phone,
-   //  address:address,
-   //  date:date,
-   //  time:time
-   //},
-   //function(data,status){
-   //    liff.closeWindow();
-   //});
-    //在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST在這邊設定POST
-    var text = "[name]" + name + "[phone]" + phone + "[address]" +  address + "[date]" + date + "[time]" + time;
-    liff.sendMessages([
-  {
-    type: 'text',
-    text: text
-  }
-])
-  .then(() => {
-    console.log('message sent');
-  })
-  .catch((err) => {
-    console.log('error', err);
-  });
-
-}
-
-function post_to_url(path, params, method) {
-    method = method || "post"; 
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    for(var key in params) {
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", key);
-        hiddenField.setAttribute("value", params[key]);
-
-        form.appendChild(hiddenField);
-    }
-
-    document.body.appendChild(form);    
-    form.submit();
+ 
 }
 
 

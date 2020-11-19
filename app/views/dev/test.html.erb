@@ -1,0 +1,27 @@
+<% content_for :title, "Order" %>
+<%= form_with url: create_order_path do |form| %>
+  <div class="field">
+  <%= form.label :預約人姓名%>
+  <%= form.text_field :name , value: @user.name%>
+  </div>
+
+    <div class="field">
+  <%= form.label :預約人手機%>
+  <%= form.text_field :phone , value: @user.phone %>
+  </div>
+
+  <div class="field">
+  <%= form.label :預約地址%>
+  <%= form.text_field :location , value: @user.location %>
+  </div>
+
+  <div class="field">
+  <%= form.label :預約時間%>
+  <%= form.datetime_field :datetime,minute_step: 15,min: DateTime.now,max: DateTime.now+7.days  %>
+  </div>
+
+
+   <div class="actions">
+    <%= form.submit "提交"%>
+  </div>
+<% end %>

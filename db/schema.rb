@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_030709) do
+ActiveRecord::Schema.define(version: 2020_11_19_054931) do
 
   create_table "orders", force: :cascade do |t|
     t.string "content"
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.datetime "time"
+    t.integer "Technician_id"
+    t.string "phone"
+    t.string "technician_line_id"
+    t.index ["Technician_id"], name: "index_orders_on_Technician_id"
   end
 
   create_table "technicians", force: :cascade do |t|
@@ -60,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_11_18_030709) do
     t.integer "technician_id"
     t.string "contact_id"
     t.boolean "contact_flag"
+    t.string "technician_line_id"
     t.index ["technician_id"], name: "index_users_on_technician_id"
   end
 

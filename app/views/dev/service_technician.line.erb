@@ -155,7 +155,7 @@
                            "action": {
                              "type": "uri",
                              "label": "立即預約",
-                             "uri": liff_path(path: new_order_path),
+                             "uri": liff_path(path: "/new_order/#{@technicians.first.line_id}"),
                            },
                            "height": "sm",
                            "style": "link",
@@ -484,4 +484,3 @@
            ],
          },
        }).to_json %>
-

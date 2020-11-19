@@ -10,16 +10,15 @@ Rails.application.routes.draw do
   get "[設定地址] (*location)",to: "dev#set_location"
   get "[聯絡技師] (*line_id)",to: "dev#contact"
   get "[結束諮詢]",to: "dev#close_contact"
-  get "[結束諮詢]",to: "dev#close_contact"
+  get "結束諮詢",to: "dev#close_contact"
   get "[接受諮詢] (*line_id)",to: "dev#accept_contact"
+  get "[確認訂單]",to: "dev#accept_order"
   get "test",to: "dev#test"
-  get "service_technician",to: "dev#service_technician"
-
   post "create_technician",to: "dev#create_technician"
   get "new_technician",to: "dev#new_technician"
 
-  post "order",to: "dev#create_order"
-  get "new_order",to: "dev#new_order"
+  post "create_order",to: "dev#create_order"
+  get "new_order/:line_id",to: "dev#new_order"
 
   get "liff_entry", to: "liff#entry"
   post "liff_route", to: "liff#route"
