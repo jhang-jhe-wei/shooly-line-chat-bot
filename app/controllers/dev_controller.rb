@@ -5,19 +5,31 @@ class DevController < ApplicationController
   def follow
   end
 
+  def finish_order
+    @order = Order.find_by user_line_id: @user.line_id,state: "init"
+    if params[:state] == "再確認"
+      render "dev/order"
+    end
+  end
+
+  def technician_information
+    @technician = Technician.find_by line_id: params[:line_id]
+    puts @technician.name
+  end
+
   def new_comment
   end
 
   def create_comment
   end
-  
+
   def accept_order
     puts "-------------#{params[:line_id]}"
     line.push_message(params[:line_id],
       {
       "type": "flex",
       "altText": "FIFA Home",
-      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "#{ENV['LIFF_COMPACT']}/liff_entry?path=/todos/new" } },{ "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.technician_line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
+      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "https://storage.googleapis.com/address.shooly.homiestudio.com.tw/sss.html?addressA=#{(Technician.find_by line_id: @user.technician_line_id).location}&addressB=#{@user.location}" } },{ "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.technician_line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
     })
   end
   
@@ -256,6 +268,181 @@ class DevController < ApplicationController
   end
   def service_technician
     @technicians = Technician.all
+    @technicians = Technician.all
+    @s = {
+      "type": "flex",
+      "altText": "FIFA Home",
+      "contents": {
+        "type": "carousel",
+        "contents": [
+        ],
+      },
+    }
+    i = 0
+    @technicians.each do |item|
+      puts item
+      @s[:contents][:contents][i] = 
+      {
+        "type": "bubble",
+        "hero": {
+          "type": "image",
+          "url": "#{item.photo}",
+          "size": "full",
+          "aspectRatio": "14:13",
+          "aspectMode": "cover",
+          "action": {
+            "type": "uri",
+            "label": "Line",
+            "uri": "https://linecorp.com/",
+          },
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "#{item.name}",
+              "weight": "bold",
+              "size": "xl",
+              "contents": [],
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "margin": "md",
+              "contents": [
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "text",
+                        "text": "4.0",
+                        "size": "sm",
+                        "color": "#999999",
+                        "flex": 0,
+                        "margin": "md",
+                        "contents": [],
+                      },
+              ],
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "margin": "lg",
+              "contents": [
+                {
+                        "type": "box",
+                        "layout": "baseline",
+                        "spacing": "sm",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "服務地區",
+                            "size": "sm",
+                            "color": "#AAAAAA",
+                            "flex": 1,
+                            "contents": [],
+                          },
+                          {
+                            "type": "text",
+                            "text": "#{item.location}",
+                            "size": "sm",
+                            "color": "#666666",
+                            "flex": 3,
+                            "wrap": true,
+                            "contents": [],
+                          },
+                        ],
+                      },
+                {
+                        "type": "box",
+                        "layout": "baseline",
+                        "spacing": "sm",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "服務時間",
+                            "size": "sm",
+                            "color": "#AAAAAA",
+                            "flex": 1,
+                            "contents": [],
+                          },
+                          {
+                            "type": "text",
+                            "text": "10:00 - 23:00",
+                            "size": "sm",
+                            "color": "#666666",
+                            "flex": 3,
+                            "wrap": true,
+                            "contents": [],
+                          },
+                        ],
+                      },
+              ],
+            },
+          ],
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "flex": 0,
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "一對一諮詢",
+                "text": "[聯絡技師] #{item.line_id}",
+              },
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "技師資訊",
+                "text": "[技師資訊] #{item.line_id}",
+              },
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "uri",
+                "label": "立即預約",
+                "uri": "https://liff.line.me/1655118814-BJejkxKg/liff_entry?path=/new_order/#{item.line_id}",
+              },
+              "height": "sm",
+              "style": "link",
+            },
+          ],
+        },
+      }
+    i += 1
+    end
   end
 
 
@@ -430,7 +617,8 @@ class DevController < ApplicationController
     }
     i = 0
     @technicians.each do |item|
-      @s[:contents][:contents][i] = {
+      @s[:contents][:contents][i] = 
+      {
         "type": "bubble",
         "hero": {
           "type": "image",
@@ -573,7 +761,7 @@ class DevController < ApplicationController
               "action": {
                 "type": "message",
                 "label": "技師資訊",
-                "text": "[技師資訊] #{item.comment}",
+                "text": "[技師資訊] #{item.line_id}",
               },
             },
             {
@@ -591,8 +779,6 @@ class DevController < ApplicationController
       }
     i += 1
     end
-    
-
     case params[:location]
     when "住家"
       @user.location_flag= 1
@@ -613,11 +799,13 @@ class DevController < ApplicationController
       @technicians=Technician.all
       @user.location = params[:location]
       @user.save
+      # puts @s.to_json
       render "dev/service_technician"
     end
   end
 
   def set_location
+    @str = { "type": "text", "text": "請輸入地址" }
     case params[:location]
     when "正確"
       case @user.location_flag
