@@ -6,8 +6,17 @@ class DevController < ApplicationController
   end
 
   def accept_order
-    puts @user.technician_line_id
+    puts "-------------#{params[:line_id]}"
+    line.push_message(params[:line_id], {
+      "type": "flex",
+      "altText": "order",
+      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "技師目前位置", "uri": liff_path(path: "/new_order/#{@technicians.first.line_id}") } }, { "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.technician_line_id}" } }] } },
+    })
+  end
+  def submit_order
+    puts "----------------------#{@user.technician_line_id}"
     @order = Order.find_by user_line_id: @user.line_id,state: "init"
+    getweather
     line.push_message(@user.technician_line_id, {
       "type": "flex",
       "altText": "FIFA Home",
@@ -194,6 +203,49 @@ class DevController < ApplicationController
   )
   end
 
+  def getweather
+    uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=#{@order.location}&language=zh-TW&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
+    #uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=106台灣台北市大安區台大公館醫院&language=zh-TW&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
+    uri = URI(uri)
+    response = Net::HTTP.get(uri).force_encoding("UTF-8")
+    json = JSON.parse response
+
+    uri = URI("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=CWB-583F2494-D964-4D6F-9F4F-71151DE1529A&elementName=WeatherDescription&fbclid=IwAR2hvYZDDkXSFVhm1ft02tgfiSHrapJdQyzGCwRWzs0kGH1MIAzHvZwAAuo")
+    response = Net::HTTP.get(uri).force_encoding("UTF-8") # => String
+    s = JSON.parse response
+    # puts s
+    @weather = "目前無法預測"
+    s["records"]["locations"][0]["location"].each do |item|
+      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台","臺")}"
+      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台","臺")
+        puts "------------------test"
+        item["weatherElement"][0]["time"].each do |element|
+          # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          puts element
+          puts "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          if element["startTime"].== "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+            @weather = element["elementValue"][0]["value"]
+            return
+          end
+        end
+      end
+      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台","臺")
+        puts "------------------test"
+        item["weatherElement"][0]["time"].each do |element|
+          # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          puts element
+          puts "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          if element["startTime"].== "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+            @weather = element["elementValue"][0]["value"]
+            puts"-------------------------#{@weather}"
+            return
+          end
+        end
+      end
+    end
+    puts"-------------------------#{@weather}"
+
+  end
   def service_technician
     @technicians=Technician.all
   end
