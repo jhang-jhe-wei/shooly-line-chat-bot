@@ -5,6 +5,17 @@ class DevController < ApplicationController
   def follow
   end
 
+  def create_user
+    @user.name = params[:name]
+    @user.phone = params[:phone]
+    @user.location = params[:location]
+    @user.save
+  end
+
+  def new_user
+
+  end
+
   def finish_order
     @order = Order.find_by user_line_id: @user.line_id,state: "init"
     if params[:state] == "再確認"
@@ -21,6 +32,153 @@ class DevController < ApplicationController
   end
 
   def create_comment
+    @comment = {
+      "type": "flex",
+      "altText": "FIFA Home",
+      "contents": {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "近期訂單評價",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "服務態度"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "效率"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "專業度"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "價格合理度"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "text": "客戶給您的留言",
+        "margin": "20px",
+        "weight": "bold"
+      },
+      {
+        "type": "text",
+        "text": "#{params[:comment]}",
+        "color": "#787777",
+        "wrap": true
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "spacer",
+        "size": "sm"
+      }
+    ],
+    "flex": 0,
+    "alignItems": "center"
+  }
+}
+}
+5.times do |i|
+  if params[:val1].to_i > i
+    @comment[:contents][:body][:contents][1][:contents][1+i]={
+      "type": "icon",
+      "size": "sm",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+    }
+  else
+    @comment[:contents][:body][:contents][1][:contents][1+i]={
+      "type": "icon",
+      "size": "sm",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+    }
+  end
+
+  if params[:val2].to_i > i
+    @comment[:contents][:body][:contents][2][:contents][1+i]={
+      "type": "icon",
+      "size": "sm",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+    }
+  else
+    @comment[:contents][:body][:contents][2][:contents][1+i]={
+      "type": "icon",
+      "size": "sm",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+    }
+  end
+
+  if params[:val3].to_i > i
+    @comment[:contents][:body][:contents][3][:contents][1+i]={
+      "type": "icon",
+      "size": "sm",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+    }
+  else
+    @comment[:contents][:body][:contents][3][:contents][1+i]={
+      "type": "icon",
+      "size": "sm",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+    }
+  end
+
+  if params[:val4].to_i > i
+    @comment[:contents][:body][:contents][4][:contents][1+i]={
+      "type": "icon",
+      "size": "sm",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+    }
+  else
+    @comment[:contents][:body][:contents][4][:contents][1+i]={
+      "type": "icon",
+      "size": "sm",
+      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+    }
+  end
+end
+    line.push_message(@user.technician_line_id,
+      @comment)
   end
 
   def accept_order
@@ -29,7 +187,7 @@ class DevController < ApplicationController
       {
       "type": "flex",
       "altText": "FIFA Home",
-      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "https://storage.googleapis.com/address.shooly.homiestudio.com.tw/sss.html?addressA=#{(Technician.find_by line_id: @user.technician_line_id).location}&addressB=#{@user.location}" } },{ "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.technician_line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
+      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "https://storage.googleapis.com/address.shooly.homiestudio.com.tw/sss.html?addressA=#{(User.find_by line_id: params[:line_id]).location}&addressB=#{@user.location || "太保市公所"}" } },{ "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
     })
   end
   
@@ -268,7 +426,6 @@ class DevController < ApplicationController
   end
   def service_technician
     @technicians = Technician.all
-    @technicians = Technician.all
     @s = {
       "type": "flex",
       "altText": "FIFA Home",
@@ -449,20 +606,20 @@ class DevController < ApplicationController
   def create_order
     @order = Order.find_by user_line_id: @user.line_id,state: "init"
     if @order.nil?
-      @order = Order.new technician_line_id: @user.technician_line_id,phone: params[:fphone],content: @user.content,location: params[:flocation],time: DateTime.parse(params[:fdatetime].to_s),name: params[:fname],user_line_id: @user.line_id,state: "init"
+      @order = Order.new technician_line_id: @user.technician_line_id,phone: params[:fphone] ||"0929839131",content: @user.content,location: params[:flocation],time: DateTime.parse(params[:fdatetime].to_s),name: params[:fname],user_line_id: @user.line_id,state: "init"
     else
       @order.technician_line_id = @user.technician_line_id
-      @order.phone = params[:fphone]
+      @order.phone = params[:fphone] || "0929839131"
       @order.content = @user.content
       @order.location =  params[:flocation]
       @order.time = DateTime.parse(params[:fdatetime].to_s)
       @order.name = params[:fname]
     end
     @order.save
-    @user.phone = params[:fphone]
+    @user.phone = params[:fphone] || "0929839131"
     @user.name = params[:fname]
     @user.save
-
+    puts "-------------------phone---------#{params[:fphone]}"
     uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=#{@order.location}&language=zh-TW&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
     #uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=106台灣台北市大安區台大公館醫院&language=zh-TW&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
     uri = URI(uri)
@@ -537,35 +694,40 @@ class DevController < ApplicationController
       @user.contact_flag=true
       @user.contact_id=params[:line_id]
       @user.save
+      contact_user = User.find_by line_id: @user.contact_id
+      contact_user.contact_flag = false
+      contact_user.save
+      line.push_message(params[:line_id], {
+        "type": "template",
+        "altText": "this is a confirm template",
+        "template": {
+          "type": "confirm",
+          "actions": [
+            {
+              "type": "message",
+              "label": "同意",
+              "text": "[接受諮詢] #{@user.line_id}"
+            },
+            {
+              "type": "message",
+              "label": "婉拒",
+              "text": "結束諮詢"
+            }
+          ],
+          "text": "有一位業主向您發出諮詢請求，您要同意嗎?"
+        }
+      })
+      render "dev/wait_contact_accept"
+    else
+      render "dev/close_first"
     end
-    line.push_message(params[:line_id], {
-      "type": "template",
-      "altText": "this is a confirm template",
-      "template": {
-        "type": "confirm",
-        "actions": [
-          {
-            "type": "message",
-            "label": "同意",
-            "text": "[接受諮詢] #{@user.line_id}"
-          },
-          {
-            "type": "message",
-            "label": "婉拒",
-            "text": "[拒絕諮詢]"
-          }
-        ],
-        "text": "有一位業主向您發出諮詢請求，您要同意嗎?"
-      }
-    })
-    render "dev/wait_contact_accept"
   end
 
   def close_contact
     puts "---------------------in close contact"
     line.push_message(@user.contact_id, { "type": "text", "text": "[結束諮詢]" })
     @contact_user = User.find_by line_id: @user.contact_id
-    @contact_user.contact_flag=false
+    @contact_user.contact_flag=nil
     @contact_user.contact_id=nil
     @contact_user.save
     @user.contact_flag=false
@@ -574,13 +736,11 @@ class DevController < ApplicationController
   end
 
   def accept_contact
-    if @user.contact_id.nil?
       @user.contact_flag=true
       @user.contact_id=params[:line_id]
       @user.save
       line.push_message(@user.contact_id, { "type": "text", "text": "現在開始可以通過Shooly進行諮詢哦！" })
-    end
-    render "accept_advisory"
+      render "dev/accept_advisory"
   end
 
   def order_begin
@@ -814,7 +974,180 @@ class DevController < ApplicationController
       end
       @user.location_flag = 0
       @user.save
-      @technicians=Technician.all
+      @technicians = Technician.all
+    @s = {
+      "type": "flex",
+      "altText": "FIFA Home",
+      "contents": {
+        "type": "carousel",
+        "contents": [
+        ],
+      },
+    }
+    i = 0
+    @technicians.each do |item|
+      @s[:contents][:contents][i] = 
+      {
+        "type": "bubble",
+        "hero": {
+          "type": "image",
+          "url": "#{item.photo}",
+          "size": "full",
+          "aspectRatio": "14:13",
+          "aspectMode": "cover",
+          "action": {
+            "type": "uri",
+            "label": "Line",
+            "uri": "https://linecorp.com/",
+          },
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "#{item.name}",
+              "weight": "bold",
+              "size": "xl",
+              "contents": [],
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "margin": "md",
+              "contents": [
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "icon",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+                        "size": "sm",
+                      },
+                {
+                        "type": "text",
+                        "text": "4.0",
+                        "size": "sm",
+                        "color": "#999999",
+                        "flex": 0,
+                        "margin": "md",
+                        "contents": [],
+                      },
+              ],
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "margin": "lg",
+              "contents": [
+                {
+                        "type": "box",
+                        "layout": "baseline",
+                        "spacing": "sm",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "服務地區",
+                            "size": "sm",
+                            "color": "#AAAAAA",
+                            "flex": 1,
+                            "contents": [],
+                          },
+                          {
+                            "type": "text",
+                            "text": "#{item.location}",
+                            "size": "sm",
+                            "color": "#666666",
+                            "flex": 3,
+                            "wrap": true,
+                            "contents": [],
+                          },
+                        ],
+                      },
+                {
+                        "type": "box",
+                        "layout": "baseline",
+                        "spacing": "sm",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "服務時間",
+                            "size": "sm",
+                            "color": "#AAAAAA",
+                            "flex": 1,
+                            "contents": [],
+                          },
+                          {
+                            "type": "text",
+                            "text": "10:00 - 23:00",
+                            "size": "sm",
+                            "color": "#666666",
+                            "flex": 3,
+                            "wrap": true,
+                            "contents": [],
+                          },
+                        ],
+                      },
+              ],
+            },
+          ],
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "flex": 0,
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "一對一諮詢",
+                "text": "[聯絡技師] #{item.line_id}",
+              },
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "技師資訊",
+                "text": "[技師資訊] #{item.line_id}",
+              },
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "uri",
+                "label": "立即預約",
+                "uri": "https://liff.line.me/1655118814-BJejkxKg/liff_entry?path=/new_order/#{item.line_id}",
+              },
+              "height": "sm",
+              "style": "link",
+            },
+          ],
+        },
+      }
+    i += 1
+    end
       render "dev/service_technician"
     when "重新輸入"
       render "dev/set_location"
@@ -836,7 +1169,7 @@ class DevController < ApplicationController
         render "dev/check_location"
       end
       
-      if @user.contact_flag
+      if @user.contact_flag && (User.find_by line_id: @user.line_id).contact_flag
         line.push_message(@user.contact_id, { "type": "text", "text": "#{params[:other]}" })
         render "dev/space"
       end

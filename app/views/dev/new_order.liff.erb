@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,7 +134,7 @@
 
 </head>
 <body>
-    <form action=<%= create_order_path %> accept-charset="UTF-8" data-remote="true" method="post">
+    <form action="/create_order" accept-charset="UTF-8" data-remote="true" method="post">
         <input name="utf8" type="hidden" value="&#x2713;" />
         <input type="hidden" name="authenticity_token" value="zqia512MembIUJ+XPgO7XKBv2ilppOAxT0YD6tBfzOGakr7QjOSaVjm4zPybLoaK2q3nV7ValWU3GKa0L678vQ==" />
         <input type="hidden" name="fname" id="fname" />
@@ -143,12 +144,12 @@
     <div class="container">
          <div class="topic">個人資訊</div>
           <div class="content" id="data_name" onclick="setName(this.id)">
-             <div class="block" id="name" ><%= @user.name %></div>
-             <div class="right">變更 〉</div>
+             <div class="block" id="name" ><%= @user.name || " "%></div>
+             <div class="right">變更姓名 〉</div>
          </div>
          <div class="content" id="data_phone" onclick="setName(this.id)">
-             <div class="block" id="phone" ><%= @user.phone %></div>
-             <div class="right">變更 〉</div>
+             <div class="block" id="phone" ><%= @user.phone || " "%></div>
+             <div class="right">變更手機 〉</div>
          </div>
     </div>
     
@@ -157,7 +158,7 @@
     <div class="container">
         <div class="topic">預約地址</div>
          <div class="content" id="data_address1" onclick="setName(this.id)">
-            <div class="block" id="location" name="location"><%= @user.location %></div>
+            <div class="block" id="location" name="location"><%= @user.location || " "%></div>
             <div class="right">變更 〉</div>
         </div>
    </div>
@@ -167,7 +168,7 @@
    <div class="container">
         <div class="topic">預約時間</div>
          <div class="content" id="data_address1">
-            <input min= "<%= "#{(DateTime.now+1.days).to_s[0..15]}" %>" max="<%= "#{(DateTime.now+7.days).to_s[0..15]}"%>" type="datetime-local" name="fdatetime" id="fdatetime" />
+             <input min= "<%= "#{(DateTime.now).to_s[0..15]}" %>" max="<%= "#{(DateTime.now+6.days).to_s[0..15]}"%>" type="datetime-local" name="fdatetime" id="fdatetime" />
         </div>
     </div>
     
@@ -238,6 +239,7 @@ function setNameOnclick(){
         document.getElementById("location").innerHTML = newName;
     }
     name.style.display = "none";
+    initial();
 }
 function initial(){
     const name = document.getElementById("name").innerHTML;

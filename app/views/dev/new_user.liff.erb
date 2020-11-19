@@ -1,0 +1,82 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="fw91QQimI8HWY8ppSsBhw4+rPNYM0po9UxSPxQ6GV0QAUtXH8UI3Kx6yHc+03N9maLa2Frg0GEZ495VawU/2Ug==" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Shooly</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;900&display=swap');
+        *{
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        body{
+            margin:0;
+        }
+        .line{
+            background-color: #f2f2f2;
+            display:block;
+            width:100vw;
+            height:8px;
+        }
+        .container{
+            width:95%;
+            margin: 0 auto;
+        }
+        .topic{
+            font-weight: 500;
+            font-size: 18px;
+            padding-bottom: 20px;
+            margin-top: 15px;
+            width:100%;
+            text-align: center;
+        }
+        input{
+            width:90%;
+            background-color: #f2f2f2;
+            border:none;
+            padding:10px;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .subTopic{
+            color:#0c4278;
+            margin-top: 40px;
+        }
+        #btn_order{
+            background-color: #0371a1;
+            color:white;
+            width:80%;
+        }
+
+    </style>
+
+</head>
+<body>
+    <form action="/create_user" accept-charset="UTF-8" data-remote="true" method="post">
+        <input name="utf8" type="hidden" value="&#x2713;" />
+        <input type="hidden" name="authenticity_token" value="zqia512MembIUJ+XPgO7XKBv2ilppOAxT0YD6tBfzOGakr7QjOSaVjm4zPybLoaK2q3nV7ValWU3GKa0L678vQ==" />
+        <div class="topic">成為技師</div>
+        <div class="container">
+            <input name="name" id="name" placeholder="您的姓名" />
+            <input name="location" id="location" placeholder="您的地區" />
+            <input name="phone"" id="phone" placeholder="您的電話" />
+            
+   <div style="width:100%;text-align: center; margin-top: 50px;"> <input type="submit" value="送出申請" id="btn_order" data-disable-with="提交"  /></div>
+
+        </div>
+   
+</form>
+
+
+<script>
+
+
+</script>
+</body>
+</html>

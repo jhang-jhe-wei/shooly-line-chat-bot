@@ -3,7 +3,8 @@ require "uri"
 class ShoolyController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :debug_info
-  before_action :privacy_read?, except: [:accept]
+  before_action :init
+  #before_action :privacy_read?, except: [:accept]
 
   def contact
     @user.technician = params[:technician]
@@ -11,24 +12,50 @@ class ShoolyController < ApplicationController
   end
 
   def getweather
+    value = ""
     puts "in get wather controller"
     @date = DateTime.parse(params[:source_params][:datetime])
+    uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=#{@user.location}&language=zh-TW&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
+    #uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=106台灣台北市大安區台大公館醫院&language=zh-TW&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
+    uri = URI(uri)
+    response = Net::HTTP.get(uri).force_encoding("UTF-8")
+    json = JSON.parse response
+
     uri = URI("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=CWB-583F2494-D964-4D6F-9F4F-71151DE1529A&elementName=WeatherDescription&fbclid=IwAR2hvYZDDkXSFVhm1ft02tgfiSHrapJdQyzGCwRWzs0kGH1MIAzHvZwAAuo")
     response = Net::HTTP.get(uri).force_encoding("UTF-8") # => String
     s = JSON.parse response
-    value = ""
-    puts "location: #{@user.location2}"
-    puts "date: #{@date.strftime("%Y-%m-%d")} 06:00:00"
+    # puts s
+    @weather = "目前無法預測"
     s["records"]["locations"][0]["location"].each do |item|
-      if item["locationName"] == @user.location2
+      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台","臺")}"
+      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台","臺")
+        puts "------------------test"
         item["weatherElement"][0]["time"].each do |element|
+          # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          puts element
+          puts "#{@date.strftime("%Y-%m-%d")} 06:00:00"
           if element["startTime"].== "#{@date.strftime("%Y-%m-%d")} 06:00:00"
-            value = element["elementValue"][0]["value"]
+            @weather = element["elementValue"][0]["value"]
+
+          end
+        end
+      end
+      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台","臺")
+        puts "------------------test"
+        item["weatherElement"][0]["time"].each do |element|
+          # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          puts element
+          puts "#{@date.strftime("%Y-%m-%d")} 06:00:00"
+          if element["startTime"].== "#{@date.strftime("%Y-%m-%d")} 06:00:00"
+            @weather = element["elementValue"][0]["value"]
+            puts"-------------------------#{@weather}"
           end
         end
       end
     end
+    puts"-------------------------#{@weather}"
     @str = value
+    value = @weather
     puts "value: #{value}"
     value.split("。").each do |item|
       if item.include?("降雨機率")
@@ -214,6 +241,12 @@ class ShoolyController < ApplicationController
     else
       render "shooly/privacy"
     end
+  end
+
+  def init
+    @user = User.find_by line_id: params[:source_user_id]
+    @user ||= User.new line_id: params[:source_user_id],location_flag: 0
+    @user.save
   end
 
   def debug_info
