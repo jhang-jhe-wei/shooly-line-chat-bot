@@ -1202,8 +1202,8 @@ end
 
   def line
     @line ||= Line::Bot::Client.new { |config|
-      config.channel_secret = "6b3c2b3478595ae35fb2c4165560af47"
-      config.channel_token = "eTm/jNJL/gzPKV1jZVU63A2w48ghuPBKddj+9AZ0OKtb1bNNBIWjb3cjTY0hjBbTs7Kj7UiThZW8dR8eyIbmAWbzqnq+XLw8GxIC860QO1lFzYE3oukLs3ezdonS7NEVFstnk9gxveiE+rdLvozsRgdB04t89/1O/w1cDnyilFU="
+      config.channel_secret = ENV['LINE_CHANNEL_SECRET']
+      config.channel_token = ENV['LINE_CHANNEL_TOKEN']
     }
   end
 end
