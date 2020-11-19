@@ -7,10 +7,11 @@ class DevController < ApplicationController
 
   def accept_order
     puts "-------------#{params[:line_id]}"
-    line.push_message(params[:line_id], {
+    line.push_message(params[:line_id],
+      {
       "type": "flex",
-      "altText": "order",
-      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "技師目前位置", "uri": liff_path(path: "/new_order/#{@technicians.first.line_id}") } }, { "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.technician_line_id}" } }] } },
+      "altText": "FIFA Home",
+      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "#{ENV['LIFF_COMPACT']}/liff_entry?path=/todos/new" } },{ "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.technician_line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
     })
   end
   def submit_order
