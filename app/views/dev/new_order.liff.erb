@@ -143,11 +143,11 @@
     <div class="container">
          <div class="topic">個人資訊</div>
           <div class="content" id="data_name" onclick="setName(this.id)">
-             <div class="block" id="name" >陳彥家</div>
+             <div class="block" id="name" ><%= @user.name %></div>
              <div class="right">變更 〉</div>
          </div>
          <div class="content" id="data_phone" onclick="setName(this.id)">
-             <div class="block" id="phone" >+886 975665895</div>
+             <div class="block" id="phone" ><%= @user.phone %></div>
              <div class="right">變更 〉</div>
          </div>
     </div>
@@ -157,7 +157,7 @@
     <div class="container">
         <div class="topic">預約地址</div>
          <div class="content" id="data_address1" onclick="setName(this.id)">
-            <div class="block" id="location" name="location">台北市中山區大直街</div>
+            <div class="block" id="location" name="location"><%= @user.location %></div>
             <div class="right">變更 〉</div>
         </div>
    </div>
@@ -167,7 +167,7 @@
    <div class="container">
         <div class="topic">預約時間</div>
          <div class="content" id="data_address1">
-            <input min="2020-11-18T06:07:56" max="2020-11-25T06:07:56" type="datetime-local" name="fdatetime" id="fdatetime" />
+            <input min= "<%= "#{(DateTime.now+1.days).to_s[0..15]}" %>" max="<%= "#{(DateTime.now+7.days).to_s[0..15]}"%>" type="datetime-local" name="fdatetime" id="fdatetime" />
         </div>
     </div>
     

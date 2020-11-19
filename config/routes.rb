@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   get "[結束諮詢]",to: "dev#close_contact"
   get "結束諮詢",to: "dev#close_contact"
   get "[接受諮詢] (*line_id)",to: "dev#accept_contact"
-  get "[確認訂單]",to: "dev#accept_order"
+  get "[接受訂單] (*line_id)",to: "dev#accept_order"
+  get "送出訂單",to: "dev#submit_order"
+
   get "test",to: "dev#test"
   post "create_technician",to: "dev#create_technician"
   get "new_technician",to: "dev#new_technician"

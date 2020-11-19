@@ -6,6 +6,192 @@ class DevController < ApplicationController
   end
 
   def accept_order
+    puts @user.technician_line_id
+    @order = Order.find_by user_line_id: @user.line_id,state: "init"
+    line.push_message(@user.technician_line_id, {
+      "type": "flex",
+      "altText": "FIFA Home",
+      "contents": {
+        "type": "bubble",
+        "direction": "ltr",
+        "header": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "您有訂單",
+              "weight": "bold",
+              "size": "xl",
+              "color": "#0773D3FF",
+              "align": "start",
+              "contents": [],
+            },
+            {
+              "type": "text",
+              "text": "#{@order.time}",
+              "color": "#A2A0A0FF",
+              "margin": "lg",
+              "contents": [],
+            },
+            {
+              "type": "filler",
+            },
+            {
+              "type": "separator",
+              "margin": "sm",
+            },
+          ],
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "none",
+              "contents": [
+                {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "text",
+                              "text": "預約人：",
+                              "weight": "bold",
+                              "color": "#0773D3FF",
+                              "contents": [],
+                            },
+                            {
+                              "type": "text",
+                              "text": "#{@order.name}",
+                              "weight": "bold",
+                              "contents": [],
+                            },
+                          ],
+                        },
+                {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "text",
+                              "text": "項目：",
+                              "weight": "bold",
+                              "color": "#0773D3FF",
+                              "align": "start",
+                              "contents": [],
+                            },
+                            {
+                              "type": "text",
+                              "text": "#{@order.content}",
+                              "weight": "bold",
+                              "align": "start",
+                              "contents": [],
+                            },
+                          ],
+                        },
+                {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "text",
+                              "text": "技師：",
+                              "weight": "bold",
+                              "color": "#0773D3FF",
+                              "contents": [],
+                            },
+                            {
+                              "type": "text",
+                              "text": "#{(Technician.find_by line_id: @order.technician_line_id).name}",
+                              "weight": "bold",
+                              "contents": [],
+                            },
+                          ],
+                        },
+                {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "text",
+                              "text": "地址：",
+                              "weight": "bold",
+                              "color": "#0773D3FF",
+                              "contents": [],
+                            },
+                            {
+                              "type": "text",
+                              "text": "#{@order.location}",
+                              "weight": "bold",
+                              "contents": [],
+                            },
+                          ],
+                        },
+                {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "text",
+                              "text": "電話號碼：",
+                              "weight": "bold",
+                              "color": "#0773D3FF",
+                              "contents": [],
+                            },
+                            {
+                              "type": "text",
+                              "text": "#{@order.phone}",
+                              "weight": "bold",
+                              "contents": [],
+                            },
+                          ],
+                        },
+              {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "text",
+                              "text": "天氣狀況：",
+                              "weight": "bold",
+                              "color": "#0773D3FF",
+                              "contents": [],
+                            },
+                            {
+                              "type": "text",
+                              "text": "#{@weather}",
+                              "wrap": true,
+                              "weight": "bold",
+                              "contents": [],
+                            },
+                          ],
+                        },
+              ],
+            },
+          ],
+        },
+        "footer": {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "接受訂單",
+                "text": "[接受訂單] #{@user.line_id}"
+              },
+              "color": "#0AE0B1FF",
+              "style": "primary",
+            },
+          ],
+        },
+      },
+    }
+  )
   end
 
   def service_technician
@@ -14,13 +200,64 @@ class DevController < ApplicationController
 
 
   def create_order
-    @order = Order.new technician_line_id: @user.technician_line_id,phone: params[:fphone],content: @user.content,location: params[:flocation],time: DateTime.parse(params[:fdatetime].to_s),name: params[:fname]
+    @order = Order.find_by user_line_id: @user.line_id,state: "init"
+    if @order.nil?
+      @order = Order.new technician_line_id: @user.technician_line_id,phone: params[:fphone],content: @user.content,location: params[:flocation],time: DateTime.parse(params[:fdatetime].to_s),name: params[:fname],user_line_id: @user.line_id,state: "init"
+    else
+      @order.technician_line_id = @user.technician_line_id
+      @order.phone = params[:fphone]
+      @order.content = @user.content
+      @order.location =  params[:flocation]
+      @order.time = DateTime.parse(params[:fdatetime].to_s)
+      @order.name = params[:fname]
+    end
     @order.save
     @user.phone = params[:fphone]
     @user.name = params[:fname]
     @user.save
-    puts "------------#{@order.phone}"
-    puts "------------#{DateTime.parse(params[:fdatetime].to_s).class}"
+
+    uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=#{@order.location}&language=zh-TW&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
+    #uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=106台灣台北市大安區台大公館醫院&language=zh-TW&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
+    uri = URI(uri)
+    response = Net::HTTP.get(uri).force_encoding("UTF-8")
+    json = JSON.parse response
+
+    uri = URI("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=CWB-583F2494-D964-4D6F-9F4F-71151DE1529A&elementName=WeatherDescription&fbclid=IwAR2hvYZDDkXSFVhm1ft02tgfiSHrapJdQyzGCwRWzs0kGH1MIAzHvZwAAuo")
+    response = Net::HTTP.get(uri).force_encoding("UTF-8") # => String
+    s = JSON.parse response
+    # puts s
+    @weather = "目前無法預測"
+    s["records"]["locations"][0]["location"].each do |item|
+      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台","臺")}"
+      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台","臺")
+        puts "------------------test"
+        item["weatherElement"][0]["time"].each do |element|
+          # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          puts element
+          puts "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          if element["startTime"].== "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+            @weather = element["elementValue"][0]["value"]
+            render "dev/check_order"
+            return
+          end
+        end
+      end
+      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台","臺")
+        puts "------------------test"
+        item["weatherElement"][0]["time"].each do |element|
+          # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          puts element
+          puts "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+          if element["startTime"].== "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
+            @weather = element["elementValue"][0]["value"]
+            puts"-------------------------#{@weather}"
+            render "dev/check_order"
+            return
+          end
+        end
+      end
+    end
+    puts"-------------------------#{@weather}"
     render "dev/check_order"
   end
 
@@ -43,6 +280,7 @@ class DevController < ApplicationController
     @technician.line_id = params[:source_user_id]
     @technician.name = params[:name]
     @technician.location = params[:location]
+    @technician.phone = params[:phone]
     @technician.photo = json["pictureUrl"]
     @technician.save
   end

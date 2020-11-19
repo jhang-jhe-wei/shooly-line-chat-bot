@@ -140,6 +140,26 @@
                                 },
                               ],
                             },
+                  {
+                              "type": "box",
+                              "layout": "vertical",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "天氣狀況：",
+                                  "weight": "bold",
+                                  "color": "#0773D3FF",
+                                  "contents": [],
+                                },
+                                {
+                                  "type": "text",
+                                  "text": "#{@weather}",
+                                  "wrap": true,
+                                  "weight": "bold",
+                                  "contents": [],
+                                },
+                              ],
+                            },
                   ],
                 },
               ],
@@ -152,8 +172,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "立即預約",
-                    "text": "[確認訂單]",
+                    "label": "送出訂單",
+                    "text": "送出訂單",
                   },
                   "color": "#0AE0B1FF",
                   "style": "primary",

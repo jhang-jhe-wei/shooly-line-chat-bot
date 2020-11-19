@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_054931) do
+ActiveRecord::Schema.define(version: 2020_11_19_080728) do
 
   create_table "orders", force: :cascade do |t|
     t.string "content"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2020_11_19_054931) do
     t.integer "Technician_id"
     t.string "phone"
     t.string "technician_line_id"
+    t.string "user_line_id"
+    t.string "state"
     t.index ["Technician_id"], name: "index_orders_on_Technician_id"
   end
 
@@ -36,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_11_19_054931) do
     t.datetime "updated_at", null: false
     t.string "contact_id"
     t.boolean "contact_flag"
+    t.string "phone"
   end
 
   create_table "todos", force: :cascade do |t|
