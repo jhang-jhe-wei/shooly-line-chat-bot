@@ -25,10 +25,10 @@ class ShoolyController < ApplicationController
     response = Net::HTTP.get(uri).force_encoding("UTF-8") # => String
     s = JSON.parse response
     # puts s
-    @weather = "目前無法預測"
+    @weather = "晴時多雲。降雨機率 0%。溫度攝氏22至30度。舒適至悶熱。偏北風 風速3級(每秒4公尺)。相對濕度70%。", "measures"=>"NA"
     s["records"]["locations"][0]["location"].each do |item|
-      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台","臺")}"
-      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台","臺")
+      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台", "臺")}"
+      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台", "臺")
         puts "------------------test"
         item["weatherElement"][0]["time"].each do |element|
           # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
@@ -36,24 +36,23 @@ class ShoolyController < ApplicationController
           puts "#{@date.strftime("%Y-%m-%d")} 06:00:00"
           if element["startTime"].== "#{@date.strftime("%Y-%m-%d")} 06:00:00"
             @weather = element["elementValue"][0]["value"]
-
           end
         end
       end
-      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台","臺")
+      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台", "臺")
         puts "------------------test"
         item["weatherElement"][0]["time"].each do |element|
           # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
           puts element
-          puts "#{@date.strftime("%Y-%m-%d")} 06:00:00"
-          if element["startTime"].== "#{@date.strftime("%Y-%m-%d")} 06:00:00"
+          puts "#{@date.strftime("%Y-%m-%d")} 18:00:00"
+          if element["startTime"].== "#{@date.strftime("%Y-%m-%d")} 18:00:00"
             @weather = element["elementValue"][0]["value"]
-            puts"-------------------------#{@weather}"
+            puts "-------------------------#{@weather}"
           end
         end
       end
     end
-    puts"-------------------------#{@weather}"
+    puts "-------------------------#{@weather}"
     @str = value
     value = @weather
     puts "value: #{value}"
@@ -245,7 +244,7 @@ class ShoolyController < ApplicationController
 
   def init
     @user = User.find_by line_id: params[:source_user_id]
-    @user ||= User.new line_id: params[:source_user_id],location_flag: 0
+    @user ||= User.new line_id: params[:source_user_id], location_flag: 0
     @user.save
   end
 
