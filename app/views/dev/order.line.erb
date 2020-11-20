@@ -1,5 +1,5 @@
 <%= raw ({
-         "type": "flex",
-         "altText": "FIFA Home",
-         "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "https://storage.googleapis.com/address.shooly.homiestudio.com.tw/sss.html?addressA=#{(User.find_by line_id: params[:line_id]).location}&addressB=#{@user.location || "太保市公所"}" } }, { "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.technician_line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
-       }).to_json %>
+            "type": "flex",
+            "altText": "FIFA Home",
+            "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "https://storage.googleapis.com/address.shooly.homiestudio.com.tw/sss.html?addressA=#{(User.find_by line_id: @user.technician_line_id).location}&addressB=#{@user.location || "太保市公所"}" } }, { "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.technician_line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
+          }).to_json %>
