@@ -1,7 +1,8 @@
 class DevController < ApplicationController
-    protect_from_forgery with: :null_session
-    before_action :debug_info
-    before_action :init
+  protect_from_forgery with: :null_session
+  before_action :debug_info
+  before_action :init
+
   def follow
   end
 
@@ -13,11 +14,10 @@ class DevController < ApplicationController
   end
 
   def new_user
-
   end
 
   def finish_order
-    @order = Order.find_by user_line_id: @user.line_id,state: "init"
+    @order = Order.find_by user_line_id: @user.line_id, state: "init"
     if params[:state] == "再確認"
       render "dev/order"
     end
@@ -36,164 +36,164 @@ class DevController < ApplicationController
       "type": "flex",
       "altText": "FIFA Home",
       "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": "近期訂單評價",
-        "weight": "bold",
-        "size": "xl"
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "近期訂單評價",
+              "weight": "bold",
+              "size": "xl",
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "margin": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "服務態度",
+                },
+              ],
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "margin": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "效率",
+                },
+              ],
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "margin": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "專業度",
+                },
+              ],
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "margin": "md",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "價格合理度",
+                },
+              ],
+            },
+            {
+              "type": "text",
+              "text": "客戶給您的留言",
+              "margin": "20px",
+              "weight": "bold",
+            },
+            {
+              "type": "text",
+              "text": "#{params[:comment]}",
+              "color": "#787777",
+              "wrap": true,
+            },
+          ],
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "spacer",
+              "size": "sm",
+            },
+          ],
+          "flex": 0,
+          "alignItems": "center",
+        },
       },
-      {
-        "type": "box",
-        "layout": "baseline",
-        "margin": "md",
-        "contents": [
-          {
-            "type": "text",
-            "text": "服務態度"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "baseline",
-        "margin": "md",
-        "contents": [
-          {
-            "type": "text",
-            "text": "效率"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "baseline",
-        "margin": "md",
-        "contents": [
-          {
-            "type": "text",
-            "text": "專業度"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "baseline",
-        "margin": "md",
-        "contents": [
-          {
-            "type": "text",
-            "text": "價格合理度"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "text": "客戶給您的留言",
-        "margin": "20px",
-        "weight": "bold"
-      },
-      {
-        "type": "text",
-        "text": "#{params[:comment]}",
-        "color": "#787777",
-        "wrap": true
-      }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "sm",
-    "contents": [
-      {
-        "type": "spacer",
-        "size": "sm"
-      }
-    ],
-    "flex": 0,
-    "alignItems": "center"
-  }
-}
-}
-5.times do |i|
-  if params[:val1].to_i > i
-    @comment[:contents][:body][:contents][1][:contents][1+i]={
-      "type": "icon",
-      "size": "sm",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
     }
-  else
-    @comment[:contents][:body][:contents][1][:contents][1+i]={
-      "type": "icon",
-      "size": "sm",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
-    }
-  end
+    5.times do |i|
+      if params[:val1].to_i > i
+        @comment[:contents][:body][:contents][1][:contents][1 + i] = {
+          "type": "icon",
+          "size": "sm",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+        }
+      else
+        @comment[:contents][:body][:contents][1][:contents][1 + i] = {
+          "type": "icon",
+          "size": "sm",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+        }
+      end
 
-  if params[:val2].to_i > i
-    @comment[:contents][:body][:contents][2][:contents][1+i]={
-      "type": "icon",
-      "size": "sm",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-    }
-  else
-    @comment[:contents][:body][:contents][2][:contents][1+i]={
-      "type": "icon",
-      "size": "sm",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
-    }
-  end
+      if params[:val2].to_i > i
+        @comment[:contents][:body][:contents][2][:contents][1 + i] = {
+          "type": "icon",
+          "size": "sm",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+        }
+      else
+        @comment[:contents][:body][:contents][2][:contents][1 + i] = {
+          "type": "icon",
+          "size": "sm",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+        }
+      end
 
-  if params[:val3].to_i > i
-    @comment[:contents][:body][:contents][3][:contents][1+i]={
-      "type": "icon",
-      "size": "sm",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-    }
-  else
-    @comment[:contents][:body][:contents][3][:contents][1+i]={
-      "type": "icon",
-      "size": "sm",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
-    }
-  end
+      if params[:val3].to_i > i
+        @comment[:contents][:body][:contents][3][:contents][1 + i] = {
+          "type": "icon",
+          "size": "sm",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+        }
+      else
+        @comment[:contents][:body][:contents][3][:contents][1 + i] = {
+          "type": "icon",
+          "size": "sm",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+        }
+      end
 
-  if params[:val4].to_i > i
-    @comment[:contents][:body][:contents][4][:contents][1+i]={
-      "type": "icon",
-      "size": "sm",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-    }
-  else
-    @comment[:contents][:body][:contents][4][:contents][1+i]={
-      "type": "icon",
-      "size": "sm",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
-    }
-  end
-end
+      if params[:val4].to_i > i
+        @comment[:contents][:body][:contents][4][:contents][1 + i] = {
+          "type": "icon",
+          "size": "sm",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+        }
+      else
+        @comment[:contents][:body][:contents][4][:contents][1 + i] = {
+          "type": "icon",
+          "size": "sm",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+        }
+      end
+    end
     line.push_message(@user.technician_line_id,
-      @comment)
+                      @comment)
   end
 
   def accept_order
     puts "-------------#{params[:line_id]}"
     line.push_message(params[:line_id],
-      {
+                      {
       "type": "flex",
       "altText": "FIFA Home",
-      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "https://storage.googleapis.com/address.shooly.homiestudio.com.tw/sss.html?addressA=#{(User.find_by line_id: params[:line_id]).location}&addressB=#{@user.location || "太保市公所"}" } },{ "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
+      "contents": { "type": "bubble", "direction": "ltr", "header": { "type": "box", "layout": "vertical", "contents": [{ "type": "text", "text": "您的訂單已建立", "weight": "bold", "size": "xl", "color": "#1969A4FF", "align": "center", "contents": [] }, { "type": "separator", "margin": "sm" }] }, "footer": { "type": "box", "layout": "vertical", "contents": [{ "type": "button", "action": { "type": "uri", "label": "查看技師位置", "uri": "https://storage.googleapis.com/address.shooly.homiestudio.com.tw/sss.html?addressA=#{(User.find_by line_id: params[:line_id]).location}&addressB=#{@user.location || "太保市公所"}" } }, { "type": "button", "action": { "type": "message", "label": "聯絡技師", "text": "[聯絡技師] #{@user.line_id}" } }, { "type": "button", "action": { "type": "message", "label": "完成訂單", "text": "完成訂單" } }] } },
     })
   end
-  
+
   def submit_order
     puts "----------------------#{@user.technician_line_id}"
-    @order = Order.find_by user_line_id: @user.line_id,state: "init"
+    @order = Order.find_by user_line_id: @user.line_id, state: "init"
     getweather
     line.push_message(@user.technician_line_id, {
       "type": "flex",
@@ -240,29 +240,29 @@ end
               "spacing": "none",
               "contents": [
                 {
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
-                            {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
                               "type": "text",
                               "text": "預約人：",
                               "weight": "bold",
                               "color": "#0773D3FF",
                               "contents": [],
                             },
-                            {
+                    {
                               "type": "text",
                               "text": "#{@order.name}",
                               "weight": "bold",
                               "contents": [],
                             },
-                          ],
-                        },
+                  ],
+                },
                 {
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
-                            {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
                               "type": "text",
                               "text": "項目：",
                               "weight": "bold",
@@ -270,92 +270,92 @@ end
                               "align": "start",
                               "contents": [],
                             },
-                            {
+                    {
                               "type": "text",
                               "text": "#{@order.content}",
                               "weight": "bold",
                               "align": "start",
                               "contents": [],
                             },
-                          ],
-                        },
+                  ],
+                },
                 {
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
-                            {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
                               "type": "text",
                               "text": "技師：",
                               "weight": "bold",
                               "color": "#0773D3FF",
                               "contents": [],
                             },
-                            {
+                    {
                               "type": "text",
                               "text": "#{(Technician.find_by line_id: @order.technician_line_id).name}",
                               "weight": "bold",
                               "contents": [],
                             },
-                          ],
-                        },
+                  ],
+                },
                 {
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
-                            {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
                               "type": "text",
                               "text": "地址：",
                               "weight": "bold",
                               "color": "#0773D3FF",
                               "contents": [],
                             },
-                            {
+                    {
                               "type": "text",
                               "text": "#{@order.location}",
                               "weight": "bold",
                               "contents": [],
                             },
-                          ],
-                        },
+                  ],
+                },
                 {
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
-                            {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
                               "type": "text",
                               "text": "電話號碼：",
                               "weight": "bold",
                               "color": "#0773D3FF",
                               "contents": [],
                             },
-                            {
+                    {
                               "type": "text",
                               "text": "#{@order.phone}",
                               "weight": "bold",
                               "contents": [],
                             },
-                          ],
-                        },
-              {
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [
-                            {
+                  ],
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
                               "type": "text",
                               "text": "天氣狀況：",
                               "weight": "bold",
                               "color": "#0773D3FF",
                               "contents": [],
                             },
-                            {
+                    {
                               "type": "text",
                               "text": "#{@weather}",
                               "wrap": true,
                               "weight": "bold",
                               "contents": [],
                             },
-                          ],
-                        },
+                  ],
+                },
               ],
             },
           ],
@@ -369,7 +369,7 @@ end
               "action": {
                 "type": "message",
                 "label": "接受訂單",
-                "text": "[接受訂單] #{@user.line_id}"
+                "text": "[接受訂單] #{@user.line_id}",
               },
               "color": "#0AE0B1FF",
               "style": "primary",
@@ -377,8 +377,7 @@ end
           ],
         },
       },
-    }
-  )
+    })
   end
 
   def getweather
@@ -394,8 +393,8 @@ end
     # puts s
     @weather = "目前無法預測"
     s["records"]["locations"][0]["location"].each do |item|
-      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台","臺")}"
-      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台","臺")
+      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台", "臺")}"
+      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台", "臺")
         puts "------------------test"
         item["weatherElement"][0]["time"].each do |element|
           # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
@@ -407,7 +406,7 @@ end
           end
         end
       end
-      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台","臺")
+      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台", "臺")
         puts "------------------test"
         item["weatherElement"][0]["time"].each do |element|
           # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
@@ -415,15 +414,15 @@ end
           puts "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
           if element["startTime"].== "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
             @weather = element["elementValue"][0]["value"]
-            puts"-------------------------#{@weather}"
+            puts "-------------------------#{@weather}"
             return
           end
         end
       end
     end
-    puts"-------------------------#{@weather}"
-
+    puts "-------------------------#{@weather}"
   end
+
   def service_technician
     @technicians = Technician.all
     @s = {
@@ -431,92 +430,91 @@ end
       "altText": "FIFA Home",
       "contents": {
         "type": "carousel",
-        "contents": [
-        ],
+        "contents": [],
       },
     }
     i = 0
     @technicians.each do |item|
       puts item
-      @s[:contents][:contents][i] = 
-      {
-        "type": "bubble",
-        "hero": {
-          "type": "image",
-          "url": "#{item.photo}",
-          "size": "full",
-          "aspectRatio": "14:13",
-          "aspectMode": "cover",
-          "action": {
-            "type": "uri",
-            "label": "Line",
-            "uri": "https://linecorp.com/",
+      @s[:contents][:contents][i] =
+        {
+          "type": "bubble",
+          "hero": {
+            "type": "image",
+            "url": "#{item.photo}",
+            "size": "full",
+            "aspectRatio": "14:13",
+            "aspectMode": "cover",
+            "action": {
+              "type": "uri",
+              "label": "Line",
+              "uri": "https://linecorp.com/",
+            },
           },
-        },
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "text",
-              "text": "#{item.name}",
-              "weight": "bold",
-              "size": "xl",
-              "contents": [],
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "margin": "md",
-              "contents": [
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "text",
-                        "text": "4.0",
-                        "size": "sm",
-                        "color": "#999999",
-                        "flex": 0,
-                        "margin": "md",
-                        "contents": [],
-                      },
-              ],
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "spacing": "sm",
-              "margin": "lg",
-              "contents": [
-                {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                          {
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "#{item.name}",
+                "weight": "bold",
+                "size": "xl",
+                "contents": [],
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "margin": "md",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "text",
+                    "text": "4.0",
+                    "size": "sm",
+                    "color": "#999999",
+                    "flex": 0,
+                    "margin": "md",
+                    "contents": [],
+                  },
+                ],
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "margin": "lg",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "spacing": "sm",
+                    "contents": [
+                      {
                             "type": "text",
                             "text": "服務地區",
                             "size": "sm",
@@ -524,7 +522,7 @@ end
                             "flex": 1,
                             "contents": [],
                           },
-                          {
+                      {
                             "type": "text",
                             "text": "#{item.location}",
                             "size": "sm",
@@ -533,14 +531,14 @@ end
                             "wrap": true,
                             "contents": [],
                           },
-                        ],
-                      },
-                {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                          {
+                    ],
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "spacing": "sm",
+                    "contents": [
+                      {
                             "type": "text",
                             "text": "服務時間",
                             "size": "sm",
@@ -548,7 +546,7 @@ end
                             "flex": 1,
                             "contents": [],
                           },
-                          {
+                      {
                             "type": "text",
                             "text": "10:00 - 23:00",
                             "size": "sm",
@@ -557,61 +555,60 @@ end
                             "wrap": true,
                             "contents": [],
                           },
-                        ],
-                      },
-              ],
-            },
-          ],
-        },
-        "footer": {
-          "type": "box",
-          "layout": "vertical",
-          "flex": 0,
-          "spacing": "sm",
-          "contents": [
-            {
-              "type": "button",
-              "action": {
-                "type": "message",
-                "label": "一對一諮詢",
-                "text": "[聯絡技師] #{item.line_id}",
+                    ],
+                  },
+                ],
               },
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "message",
-                "label": "技師資訊",
-                "text": "[技師資訊] #{item.line_id}",
+            ],
+          },
+          "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "flex": 0,
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "label": "一對一諮詢",
+                  "text": "[聯絡技師] #{item.line_id}",
+                },
               },
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "uri",
-                "label": "立即預約",
-                "uri": "https://liff.line.me/1655118814-BJejkxKg/liff_entry?path=/new_order/#{item.line_id}",
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "label": "技師資訊",
+                  "text": "[技師資訊] #{item.line_id}",
+                },
               },
-              "height": "sm",
-              "style": "link",
-            },
-          ],
-        },
-      }
-    i += 1
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "立即預約",
+                  "uri": "#{ENV["LIFF_COMPACT"]}/liff_entry?path=/new_order/#{item.line_id}",
+                },
+                "height": "sm",
+                "style": "link",
+              },
+            ],
+          },
+        }
+      i += 1
     end
   end
 
-
   def create_order
-    @order = Order.find_by user_line_id: @user.line_id,state: "init"
+    @order = Order.find_by user_line_id: @user.line_id, state: "init"
     if @order.nil?
-      @order = Order.new technician_line_id: @user.technician_line_id,phone: params[:fphone] ||"0929839131",content: @user.content,location: params[:flocation],time: DateTime.parse(params[:fdatetime].to_s),name: params[:fname],user_line_id: @user.line_id,state: "init"
+      @order = Order.new technician_line_id: @user.technician_line_id, phone: params[:fphone] || "0929839131", content: @user.content, location: params[:flocation], time: DateTime.parse(params[:fdatetime].to_s), name: params[:fname], user_line_id: @user.line_id, state: "init"
     else
       @order.technician_line_id = @user.technician_line_id
       @order.phone = params[:fphone] || "0929839131"
       @order.content = @user.content
-      @order.location =  params[:flocation]
+      @order.location = params[:flocation]
       @order.time = DateTime.parse(params[:fdatetime].to_s)
       @order.name = params[:fname]
     end
@@ -632,8 +629,8 @@ end
     # puts s
     @weather = "目前無法預測"
     s["records"]["locations"][0]["location"].each do |item|
-      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台","臺")}"
-      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台","臺")
+      puts "------------------#{json["results"][0]["address_components"][2]["short_name"].sub("台", "臺")}"
+      if item["locationName"] == json["results"][0]["address_components"][2]["short_name"].sub("台", "臺")
         puts "------------------test"
         item["weatherElement"][0]["time"].each do |element|
           # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
@@ -646,7 +643,7 @@ end
           end
         end
       end
-      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台","臺")
+      if item["locationName"] == json["results"][0]["address_components"][3]["short_name"].sub("台", "臺")
         puts "------------------test"
         item["weatherElement"][0]["time"].each do |element|
           # puts "----------------#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
@@ -654,19 +651,18 @@ end
           puts "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
           if element["startTime"].== "#{@order.time.strftime("%Y-%m-%d")} 06:00:00"
             @weather = element["elementValue"][0]["value"]
-            puts"-------------------------#{@weather}"
+            puts "-------------------------#{@weather}"
             render "dev/check_order"
             return
           end
         end
       end
     end
-    puts"-------------------------#{@weather}"
+    puts "-------------------------#{@weather}"
     render "dev/check_order"
   end
 
   def new_order
-
     @user.technician_line_id = params[:line_id]
     @user.save
   end
@@ -676,7 +672,7 @@ end
 
   def create_technician
     @technician = Technician.find_by line_id: params[:source_user_id]
-    if @technician.nil?      
+    if @technician.nil?
       @technician = Technician.new
     end
     response = line.get_profile params[:source_user_id]
@@ -691,8 +687,8 @@ end
 
   def contact
     if @user.contact_id.nil?
-      @user.contact_flag=true
-      @user.contact_id=params[:line_id]
+      @user.contact_flag = true
+      @user.contact_id = params[:line_id]
       @user.save
       contact_user = User.find_by line_id: @user.contact_id
       contact_user.contact_flag = false
@@ -706,16 +702,16 @@ end
             {
               "type": "message",
               "label": "同意",
-              "text": "[接受諮詢] #{@user.line_id}"
+              "text": "[接受諮詢] #{@user.line_id}",
             },
             {
               "type": "message",
               "label": "婉拒",
-              "text": "結束諮詢"
-            }
+              "text": "結束諮詢",
+            },
           ],
-          "text": "有一位業主向您發出諮詢請求，您要同意嗎?"
-        }
+          "text": "有一位業主向您發出諮詢請求，您要同意嗎?",
+        },
       })
       render "dev/wait_contact_accept"
     else
@@ -727,20 +723,20 @@ end
     puts "---------------------in close contact"
     line.push_message(@user.contact_id, { "type": "text", "text": "[結束諮詢]" })
     @contact_user = User.find_by line_id: @user.contact_id
-    @contact_user.contact_flag=nil
-    @contact_user.contact_id=nil
+    @contact_user.contact_flag = nil
+    @contact_user.contact_id = nil
     @contact_user.save
-    @user.contact_flag=false
-    @user.contact_id=nil
+    @user.contact_flag = false
+    @user.contact_id = nil
     @user.save
   end
 
   def accept_contact
-      @user.contact_flag=true
-      @user.contact_id=params[:line_id]
-      @user.save
-      line.push_message(@user.contact_id, { "type": "text", "text": "現在開始可以通過Shooly進行諮詢哦！" })
-      render "dev/accept_advisory"
+    @user.contact_flag = true
+    @user.contact_id = params[:line_id]
+    @user.save
+    line.push_message(@user.contact_id, { "type": "text", "text": "現在開始可以通過Shooly進行諮詢哦！" })
+    render "dev/accept_advisory"
   end
 
   def order_begin
@@ -771,91 +767,90 @@ end
       "altText": "FIFA Home",
       "contents": {
         "type": "carousel",
-        "contents": [
-        ],
+        "contents": [],
       },
     }
     i = 0
     @technicians.each do |item|
-      @s[:contents][:contents][i] = 
-      {
-        "type": "bubble",
-        "hero": {
-          "type": "image",
-          "url": "#{item.photo}",
-          "size": "full",
-          "aspectRatio": "14:13",
-          "aspectMode": "cover",
-          "action": {
-            "type": "uri",
-            "label": "Line",
-            "uri": "https://linecorp.com/",
+      @s[:contents][:contents][i] =
+        {
+          "type": "bubble",
+          "hero": {
+            "type": "image",
+            "url": "#{item.photo}",
+            "size": "full",
+            "aspectRatio": "14:13",
+            "aspectMode": "cover",
+            "action": {
+              "type": "uri",
+              "label": "Line",
+              "uri": "https://linecorp.com/",
+            },
           },
-        },
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "text",
-              "text": "#{item.name}",
-              "weight": "bold",
-              "size": "xl",
-              "contents": [],
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "margin": "md",
-              "contents": [
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "text",
-                        "text": "4.0",
-                        "size": "sm",
-                        "color": "#999999",
-                        "flex": 0,
-                        "margin": "md",
-                        "contents": [],
-                      },
-              ],
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "spacing": "sm",
-              "margin": "lg",
-              "contents": [
-                {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                          {
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "#{item.name}",
+                "weight": "bold",
+                "size": "xl",
+                "contents": [],
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "margin": "md",
+                "contents": [
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "icon",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+                    "size": "sm",
+                  },
+                  {
+                    "type": "text",
+                    "text": "4.0",
+                    "size": "sm",
+                    "color": "#999999",
+                    "flex": 0,
+                    "margin": "md",
+                    "contents": [],
+                  },
+                ],
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "margin": "lg",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "spacing": "sm",
+                    "contents": [
+                      {
                             "type": "text",
                             "text": "服務地區",
                             "size": "sm",
@@ -863,7 +858,7 @@ end
                             "flex": 1,
                             "contents": [],
                           },
-                          {
+                      {
                             "type": "text",
                             "text": "#{item.location}",
                             "size": "sm",
@@ -872,14 +867,14 @@ end
                             "wrap": true,
                             "contents": [],
                           },
-                        ],
-                      },
-                {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                          {
+                    ],
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "spacing": "sm",
+                    "contents": [
+                      {
                             "type": "text",
                             "text": "服務時間",
                             "size": "sm",
@@ -887,7 +882,7 @@ end
                             "flex": 1,
                             "contents": [],
                           },
-                          {
+                      {
                             "type": "text",
                             "text": "10:00 - 23:00",
                             "size": "sm",
@@ -896,67 +891,64 @@ end
                             "wrap": true,
                             "contents": [],
                           },
-                        ],
-                      },
-              ],
-            },
-          ],
-        },
-        "footer": {
-          "type": "box",
-          "layout": "vertical",
-          "flex": 0,
-          "spacing": "sm",
-          "contents": [
-            {
-              "type": "button",
-              "action": {
-                "type": "message",
-                "label": "一對一諮詢",
-                "text": "[聯絡技師] #{item.line_id}",
+                    ],
+                  },
+                ],
               },
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "message",
-                "label": "技師資訊",
-                "text": "[技師資訊] #{item.line_id}",
+            ],
+          },
+          "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "flex": 0,
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "label": "一對一諮詢",
+                  "text": "[聯絡技師] #{item.line_id}",
+                },
               },
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "uri",
-                "label": "立即預約",
-                "uri": "#{ENV['LIFF_COMPACT']}/liff_entry?path=/new_order/#{item.line_id}",
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "label": "技師資訊",
+                  "text": "[技師資訊] #{item.line_id}",
+                },
               },
-              "height": "sm",
-              "style": "link",
-            },
-          ],
-        },
-      }
-    i += 1
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "立即預約",
+                  "uri": "#{ENV["LIFF_COMPACT"]}/liff_entry?path=/new_order/#{item.line_id}",
+                },
+                "height": "sm",
+                "style": "link",
+              },
+            ],
+          },
+        }
+      i += 1
     end
     case params[:location]
     when "住家"
-      @user.location_flag= 1
+      @user.location_flag = 1
       @user.save
       render "dev/set_location"
-
     when "常用地點"
-      @user.location_flag= 2
+      @user.location_flag = 2
       @user.save
       render "dev/set_location"
-
     when "新增地點"
-      @user.location_flag= 2
+      @user.location_flag = 2
       @user.save
       render "dev/set_location"
-
-    else  
-      @technicians=Technician.all
+    else
+      @technicians = Technician.all
       @user.location = params[:location]
       @user.save
       # puts @s.to_json
@@ -970,184 +962,183 @@ end
     when "正確"
       case @user.location_flag
       when 1 then @user.location1 = @user.location
-      when 2 then @user.location2 = @user.location 
+      when 2 then @user.location2 = @user.location
       end
       @user.location_flag = 0
       @user.save
       @technicians = Technician.all
-    @s = {
-      "type": "flex",
-      "altText": "FIFA Home",
-      "contents": {
-        "type": "carousel",
-        "contents": [
-        ],
-      },
-    }
-    i = 0
-    @technicians.each do |item|
-      @s[:contents][:contents][i] = 
-      {
-        "type": "bubble",
-        "hero": {
-          "type": "image",
-          "url": "#{item.photo}",
-          "size": "full",
-          "aspectRatio": "14:13",
-          "aspectMode": "cover",
-          "action": {
-            "type": "uri",
-            "label": "Line",
-            "uri": "https://linecorp.com/",
-          },
-        },
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "text",
-              "text": "#{item.name}",
-              "weight": "bold",
-              "size": "xl",
-              "contents": [],
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "margin": "md",
-              "contents": [
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "icon",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
-                        "size": "sm",
-                      },
-                {
-                        "type": "text",
-                        "text": "4.0",
-                        "size": "sm",
-                        "color": "#999999",
-                        "flex": 0,
-                        "margin": "md",
-                        "contents": [],
-                      },
-              ],
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "spacing": "sm",
-              "margin": "lg",
-              "contents": [
-                {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                          {
-                            "type": "text",
-                            "text": "服務地區",
-                            "size": "sm",
-                            "color": "#AAAAAA",
-                            "flex": 1,
-                            "contents": [],
-                          },
-                          {
-                            "type": "text",
-                            "text": "#{item.location}",
-                            "size": "sm",
-                            "color": "#666666",
-                            "flex": 3,
-                            "wrap": true,
-                            "contents": [],
-                          },
-                        ],
-                      },
-                {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                          {
-                            "type": "text",
-                            "text": "服務時間",
-                            "size": "sm",
-                            "color": "#AAAAAA",
-                            "flex": 1,
-                            "contents": [],
-                          },
-                          {
-                            "type": "text",
-                            "text": "10:00 - 23:00",
-                            "size": "sm",
-                            "color": "#666666",
-                            "flex": 3,
-                            "wrap": true,
-                            "contents": [],
-                          },
-                        ],
-                      },
-              ],
-            },
-          ],
-        },
-        "footer": {
-          "type": "box",
-          "layout": "vertical",
-          "flex": 0,
-          "spacing": "sm",
-          "contents": [
-            {
-              "type": "button",
-              "action": {
-                "type": "message",
-                "label": "一對一諮詢",
-                "text": "[聯絡技師] #{item.line_id}",
-              },
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "message",
-                "label": "技師資訊",
-                "text": "[技師資訊] #{item.line_id}",
-              },
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "uri",
-                "label": "立即預約",
-                "uri": "#{ENV['LIFF_COMPACT']}/liff_entry?path=/new_order/#{item.line_id}/liff_entry?path=/new_order/#{item.line_id}",
-              },
-              "height": "sm",
-              "style": "link",
-            },
-          ],
+      @s = {
+        "type": "flex",
+        "altText": "FIFA Home",
+        "contents": {
+          "type": "carousel",
+          "contents": [],
         },
       }
-    i += 1
-    end
+      i = 0
+      @technicians.each do |item|
+        @s[:contents][:contents][i] =
+          {
+            "type": "bubble",
+            "hero": {
+              "type": "image",
+              "url": "#{item.photo}",
+              "size": "full",
+              "aspectRatio": "14:13",
+              "aspectMode": "cover",
+              "action": {
+                "type": "uri",
+                "label": "Line",
+                "uri": "https://linecorp.com/",
+              },
+            },
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "#{item.name}",
+                  "weight": "bold",
+                  "size": "xl",
+                  "contents": [],
+                },
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "margin": "md",
+                  "contents": [
+                    {
+                      "type": "icon",
+                      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                      "size": "sm",
+                    },
+                    {
+                      "type": "icon",
+                      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                      "size": "sm",
+                    },
+                    {
+                      "type": "icon",
+                      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                      "size": "sm",
+                    },
+                    {
+                      "type": "icon",
+                      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                      "size": "sm",
+                    },
+                    {
+                      "type": "icon",
+                      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+                      "size": "sm",
+                    },
+                    {
+                      "type": "text",
+                      "text": "4.0",
+                      "size": "sm",
+                      "color": "#999999",
+                      "flex": 0,
+                      "margin": "md",
+                      "contents": [],
+                    },
+                  ],
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "spacing": "sm",
+                  "margin": "lg",
+                  "contents": [
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "spacing": "sm",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "服務地區",
+                          "size": "sm",
+                          "color": "#AAAAAA",
+                          "flex": 1,
+                          "contents": [],
+                        },
+                        {
+                          "type": "text",
+                          "text": "#{item.location}",
+                          "size": "sm",
+                          "color": "#666666",
+                          "flex": 3,
+                          "wrap": true,
+                          "contents": [],
+                        },
+                      ],
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "spacing": "sm",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "服務時間",
+                          "size": "sm",
+                          "color": "#AAAAAA",
+                          "flex": 1,
+                          "contents": [],
+                        },
+                        {
+                          "type": "text",
+                          "text": "10:00 - 23:00",
+                          "size": "sm",
+                          "color": "#666666",
+                          "flex": 3,
+                          "wrap": true,
+                          "contents": [],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "flex": 0,
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "一對一諮詢",
+                    "text": "[聯絡技師] #{item.line_id}",
+                  },
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "技師資訊",
+                    "text": "[技師資訊] #{item.line_id}",
+                  },
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "uri",
+                    "label": "立即預約",
+                    "uri": "#{ENV["LIFF_COMPACT"]}/liff_entry?path=/new_order/#{item.line_id}/liff_entry?path=/new_order/#{item.line_id}",
+                  },
+                  "height": "sm",
+                  "style": "link",
+                },
+              ],
+            },
+          }
+        i += 1
+      end
       render "dev/service_technician"
     when "重新輸入"
       render "dev/set_location"
@@ -1157,34 +1148,34 @@ end
 
   def other
     puts "----------------------------in other"
-      unless @user.location_flag == 0
-        @user.location = params[:other]
-        puts "------------other#{@user.location}"
-        @user.save
-        uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=#{@user.location}&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
-        uri = URI(uri)
-        response = Net::HTTP.get(uri).force_encoding("UTF-8")
-        json = JSON.parse response
-        @location = json["results"][0]["geometry"]["location"]
-        render "dev/check_location"
-      end
-      
-      if @user.contact_flag && (User.find_by line_id: @user.line_id).contact_flag
-        line.push_message(@user.contact_id, { "type": "text", "text": "#{params[:other]}" })
-        render "dev/space"
-      end
+    unless @user.location_flag == 0
+      @user.location = params[:other]
+      puts "------------other#{@user.location}"
+      @user.save
+      uri = URI::escape("https://maps.googleapis.com/maps/api/geocode/json?address=#{@user.location}&key=AIzaSyD3Wl3YZAA9886-c0Ita6q2229-j4Kz9kA")
+      uri = URI(uri)
+      response = Net::HTTP.get(uri).force_encoding("UTF-8")
+      json = JSON.parse response
+      @location = json["results"][0]["geometry"]["location"]
+      render "dev/check_location"
+    end
 
-      if params[:other].include? "new_order?line_id="
-        puts "-----------------------#{params[:other]}"
-        @user.technician_line_id = params[:other].delete "new_order?line_id="
-        @user.save
-        render "dev/new_order"
-      end
+    if @user.contact_flag && (User.find_by line_id: @user.line_id).contact_flag
+      line.push_message(@user.contact_id, { "type": "text", "text": "#{params[:other]}" })
+      render "dev/space"
+    end
+
+    if params[:other].include? "new_order?line_id="
+      puts "-----------------------#{params[:other]}"
+      @user.technician_line_id = params[:other].delete "new_order?line_id="
+      @user.save
+      render "dev/new_order"
+    end
   end
 
   def init
     @user = User.find_by line_id: params[:source_user_id]
-    @user ||= User.new line_id: params[:source_user_id],location_flag: 0
+    @user ||= User.new line_id: params[:source_user_id], location_flag: 0
     @user.save
   end
 
@@ -1202,8 +1193,8 @@ end
 
   def line
     @line ||= Line::Bot::Client.new { |config|
-      config.channel_secret = ENV['LINE_CHANNEL_SECRET']
-      config.channel_token = ENV['LINE_CHANNEL_TOKEN']
+      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
   end
 end
